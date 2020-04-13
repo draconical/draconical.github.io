@@ -1,0 +1,2026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miushi</title>
+    <link rel="stylesheet" href="./assets/swiper/swiper.css">
+    <link rel="stylesheet" href="./assets/swiper/swiper.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header fixed" id="header">
+        <div class="header__firstLine centered">
+            <div>
+                <img src="./assets/images/logo.png" alt="logo.png">
+            </div>
+            <div style="display: flex; align-items: center;">
+                <div style="margin-right: 20px;">
+                    <p style="font-weight: bold; font-size: 18px;">+7 (800) 333 2 222</p>
+                    <p style="font-size: 10px;">Работаем с 11:00 до 23:00</p>
+                </div>
+                <div>
+                    <button>ОБРАТНЫЙ ЗВОНОК</button>
+                </div>
+            </div>
+        </div>
+        <div class="header__secondLine">
+            <ul class="centered">
+                <li><a href="javascript:void(0)">МЕНЮ</a></li>
+                <li><a href="javascript:void(0)">АКЦИИ И СКИДКИ</a></li>
+                <li><a href="javascript:void(0)">ДОСТАВКА И ОПЛАТА</a></li>
+                <li><a href="javascript:void(0)">НОВОСТИ</a></li>
+                <li><a href="javascript:void(0)">КОНТАКТЫ</a></li>
+                <li><a class="secondLine__user" href="javascript:void(0)">КАБИНЕТ</a></li>
+                <li>
+                    <a id="cart" class="secondLine__cart" href="javascript:void(0)">КОРЗИНА</a>
+                    <div id="cartCounter" class="secondLine__counter">0</div>
+                </li>
+            </ul>
+        </div>
+        <div class="header_alternative centered">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="javascript:void(0)">МЕНЮ</a>
+                <a href="javascript:void(0)">АКЦИИ И СКИДКИ</a>
+                <a href="javascript:void(0)">ДОСТАВКА И ОПЛАТА</a>
+                <a href="javascript:void(0)">КОНТАКТЫ</a>
+            </div>
+
+            <span style="font-size:26px;cursor:pointer; color: #4ec83d" onclick="openNav()">&#9776;</span>
+            
+            <div>
+                <div>
+                    <img class="header__logo" alt="logo.png">
+                </div>
+            </div>
+            <div style="display: flex;">
+                <a class="secondLine__user" href="javascript:void(0)" style="margin-right: 30px;"></a>
+                <a id="cart" class="secondLine__cart" href="javascript:void(0)"></a>
+            </div>
+        </div>
+    </header>
+    <section class="slider swiper-container s1">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background: no-repeat center url('./assets/images/slider/slide.png')">
+                <div class="centered">
+                    <p class="slider__title">Счастливые часы</p>
+                    <div class="slider__sticker">скидка 15%</div>
+                    <p class="slider__description">с 11:00 до 16:00 в будние дни</p>
+                    <button class="slider__button">ПОДРОБНЕЕ</button>
+                </div>
+            </div>
+            <div class="swiper-slide" style="background: no-repeat center url('./assets/images/slider/slide.png')"></div>
+            <div class="swiper-slide" style="background: no-repeat center url('./assets/images/slider/slide.png')"></div>
+        </div>
+        
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+    </section>
+    <section class="sets centered swiper-container s2">
+        <h2 class="sets__title">Сеты</h2>
+        <div class="swiper-wrapper">
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/set10.png" alt="set10.png">
+                <div class="showcase__sticker sticker_hit"><span>хит</span></div>
+                <p class="showcase__title">Сет №10</p>
+                <p class="showcase__description">72 шт. | 1560 г. | 1700 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">2 050</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/set8.png" alt="set8.png">
+                <p class="showcase__title">Сет №8</p>
+                <p class="showcase__description">24 шт. | 960 г. | 800 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">1 590</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/miniSet5.png" alt="miniSet5.png">
+                <p class="showcase__title">Минисет №5</p>
+                <p class="showcase__description">14 шт. | 450 г. | 400 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">510</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/set6.png" alt="set6.png">
+                <div class="showcase__sticker sticker_veg"><span>veg</span></div>
+                <p class="showcase__title">Сет №6</p>
+                <p class="showcase__description">16 шт. | 460 г. | 490 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">400</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/set10.png" alt="set10.png">
+                <div class="showcase__sticker sticker_hit"><span>хит</span></div>
+                <p class="showcase__title">Сет №10</p>
+                <p class="showcase__description">72 шт. | 1560 г. | 1700 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">2 050</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/set8.png" alt="set8.png">
+                <p class="showcase__title">Сет №8</p>
+                <p class="showcase__description">24 шт. | 960 г. | 800 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">1 590</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/miniSet5.png" alt="miniSet5.png">
+                <p class="showcase__title">Минисет №5</p>
+                <p class="showcase__description">14 шт. | 450 г. | 400 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">510</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/set6.png" alt="set6.png">
+                <div class="showcase__sticker sticker_veg"><span>veg</span></div>
+                <p class="showcase__title">Сет №6</p>
+                <p class="showcase__description">16 шт. | 460 г. | 490 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">400</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/set10.png" alt="set10.png">
+                <div class="showcase__sticker sticker_hit"><span>хит</span></div>
+                <p class="showcase__title">Сет №10</p>
+                <p class="showcase__description">72 шт. | 1560 г. | 1700 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">2 050</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/set8.png" alt="set8.png">
+                <p class="showcase__title">Сет №8</p>
+                <p class="showcase__description">24 шт. | 960 г. | 800 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">1 590</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/miniSet5.png" alt="miniSet5.png">
+                <p class="showcase__title">Минисет №5</p>
+                <p class="showcase__description">14 шт. | 450 г. | 400 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">510</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/set6.png" alt="set6.png">
+                <div class="showcase__sticker sticker_veg"><span>veg</span></div>
+                <p class="showcase__title">Сет №6</p>
+                <p class="showcase__description">16 шт. | 460 г. | 490 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">400</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/set10.png" alt="set10.png">
+                <div class="showcase__sticker sticker_hit"><span>хит</span></div>
+                <p class="showcase__title">Сет №10</p>
+                <p class="showcase__description">72 шт. | 1560 г. | 1700 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">2 050</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/set8.png" alt="set8.png">
+                <p class="showcase__title">Сет №8</p>
+                <p class="showcase__description">24 шт. | 960 г. | 800 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">1 590</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/miniSet5.png" alt="miniSet5.png">
+                <p class="showcase__title">Минисет №5</p>
+                <p class="showcase__description">14 шт. | 450 г. | 400 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">510</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/set6.png" alt="set6.png">
+                <div class="showcase__sticker sticker_veg"><span>veg</span></div>
+                <p class="showcase__title">Сет №6</p>
+                <p class="showcase__description">16 шт. | 460 г. | 490 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">400</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/set10.png" alt="set10.png">
+                <div class="showcase__sticker sticker_hit"><span>хит</span></div>
+                <p class="showcase__title">Сет №10</p>
+                <p class="showcase__description">72 шт. | 1560 г. | 1700 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">2 050</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/set8.png" alt="set8.png">
+                <p class="showcase__title">Сет №8</p>
+                <p class="showcase__description">24 шт. | 960 г. | 800 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">1 590</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/miniSet5.png" alt="miniSet5.png">
+                <p class="showcase__title">Минисет №5</p>
+                <p class="showcase__description">14 шт. | 450 г. | 400 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">510</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+            <div class="showcase__item swiper-slide">
+                <img class="showcase__img" src="./assets/images/sets/set6.png" alt="set6.png">
+                <div class="showcase__sticker sticker_veg"><span>veg</span></div>
+                <p class="showcase__title">Сет №6</p>
+                <p class="showcase__description">16 шт. | 460 г. | 490 Kkal</p>
+                <div class="showcase__menu">
+                    <div>
+                        <p class="showcase__price"><span id="orderPrice">400</span> <span
+                                class="showcase__price_super">руб.</span></p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button onclick="regulateMyOrder()">–</button>
+                        <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                        <button onclick="regulateMyOrder()">+</button>
+                    </div>
+                </div>
+                <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+            </div>
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </section>
+    <section class="sets centered swiper-container s2">
+        <h2 class="sets__title">Роллы</h2>
+        <div class="swiper-wrapper">
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/kunsei.png" alt="set10.png">
+                    <p class="showcase__title">Кунсей батакон</p>
+                    <p class="showcase__description">8 шт. | 250 г. | 350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">260</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/unagi.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Унаги диру</p>
+                    <p class="showcase__description">8 шт. | 960 г. | 800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/philadelphia.png" alt="miniSet5.png">
+                    <p class="showcase__title">Филадельфия</p>
+                    <p class="showcase__description">8 шт. | 450 г. | 400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/mexican.png" alt="set6.png">
+                    <p class="showcase__title">Мексиканский</p>
+                    <p class="showcase__description">8 шт. | 460 г. | 490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">290</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/kunsei.png" alt="set10.png">
+                    <p class="showcase__title">Кунсей батакон</p>
+                    <p class="showcase__description">8 шт. | 250 г. | 350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">260</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/unagi.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Унаги диру</p>
+                    <p class="showcase__description">8 шт. | 960 г. | 800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/philadelphia.png" alt="miniSet5.png">
+                    <p class="showcase__title">Филадельфия</p>
+                    <p class="showcase__description">8 шт. | 450 г. | 400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/mexican.png" alt="set6.png">
+                    <p class="showcase__title">Мексиканский</p>
+                    <p class="showcase__description">8 шт. | 460 г. | 490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">290</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/kunsei.png" alt="set10.png">
+                    <p class="showcase__title">Кунсей батакон</p>
+                    <p class="showcase__description">8 шт. | 250 г. | 350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">260</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/unagi.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Унаги диру</p>
+                    <p class="showcase__description">8 шт. | 960 г. | 800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/philadelphia.png" alt="miniSet5.png">
+                    <p class="showcase__title">Филадельфия</p>
+                    <p class="showcase__description">8 шт. | 450 г. | 400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/mexican.png" alt="set6.png">
+                    <p class="showcase__title">Мексиканский</p>
+                    <p class="showcase__description">8 шт. | 460 г. | 490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">290</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/kunsei.png" alt="set10.png">
+                    <p class="showcase__title">Кунсей батакон</p>
+                    <p class="showcase__description">8 шт. | 250 г. | 350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">260</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/unagi.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Унаги диру</p>
+                    <p class="showcase__description">8 шт. | 960 г. | 800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/philadelphia.png" alt="miniSet5.png">
+                    <p class="showcase__title">Филадельфия</p>
+                    <p class="showcase__description">8 шт. | 450 г. | 400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/mexican.png" alt="set6.png">
+                    <p class="showcase__title">Мексиканский</p>
+                    <p class="showcase__description">8 шт. | 460 г. | 490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">290</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/kunsei.png" alt="set10.png">
+                    <p class="showcase__title">Кунсей батакон</p>
+                    <p class="showcase__description">8 шт. | 250 г. | 350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">260</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/unagi.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Унаги диру</p>
+                    <p class="showcase__description">8 шт. | 960 г. | 800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/philadelphia.png" alt="miniSet5.png">
+                    <p class="showcase__title">Филадельфия</p>
+                    <p class="showcase__description">8 шт. | 450 г. | 400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/mexican.png" alt="set6.png">
+                    <p class="showcase__title">Мексиканский</p>
+                    <p class="showcase__description">8 шт. | 460 г. | 490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">290</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </section>
+    <section class="sets centered swiper-container s2">
+        <h2 class="sets__title">Пицца</h2>
+        <div class="swiper-wrapper">
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/bavarian.png" alt="set10.png">
+                    <p class="showcase__title">Баварская</p>
+                    <p class="showcase__description">33 см. | 680 г. | 1350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">480</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/vegeterian.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Вегитерианская</p>
+                    <p class="showcase__description">33 см. | 755 г. | 1800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">380</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/pepperoni.png" alt="miniSet5.png">
+                    <p class="showcase__title">Пепперони</p>
+                    <p class="showcase__description">33 см. | 615 г. | 1400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">450</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/classic.png" alt="set6.png">
+                    <p class="showcase__title">Классическая</p>
+                    <p class="showcase__description">33 см. | 590 г. | 1490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">390</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/bavarian.png" alt="set10.png">
+                    <p class="showcase__title">Баварская</p>
+                    <p class="showcase__description">33 см. | 680 г. | 1350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">480</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/vegeterian.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Вегитерианская</p>
+                    <p class="showcase__description">33 см. | 755 г. | 1800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">380</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/pepperoni.png" alt="miniSet5.png">
+                    <p class="showcase__title">Пепперони</p>
+                    <p class="showcase__description">33 см. | 615 г. | 1400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">450</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/classic.png" alt="set6.png">
+                    <p class="showcase__title">Классическая</p>
+                    <p class="showcase__description">33 см. | 590 г. | 1490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">390</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/bavarian.png" alt="set10.png">
+                    <p class="showcase__title">Баварская</p>
+                    <p class="showcase__description">33 см. | 680 г. | 1350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">480</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/vegeterian.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Вегитерианская</p>
+                    <p class="showcase__description">33 см. | 755 г. | 1800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">380</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/pepperoni.png" alt="miniSet5.png">
+                    <p class="showcase__title">Пепперони</p>
+                    <p class="showcase__description">33 см. | 615 г. | 1400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">450</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/classic.png" alt="set6.png">
+                    <p class="showcase__title">Классическая</p>
+                    <p class="showcase__description">33 см. | 590 г. | 1490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">390</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/bavarian.png" alt="set10.png">
+                    <p class="showcase__title">Баварская</p>
+                    <p class="showcase__description">33 см. | 680 г. | 1350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">480</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/vegeterian.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Вегитерианская</p>
+                    <p class="showcase__description">33 см. | 755 г. | 1800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">380</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/pepperoni.png" alt="miniSet5.png">
+                    <p class="showcase__title">Пепперони</p>
+                    <p class="showcase__description">33 см. | 615 г. | 1400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">450</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/classic.png" alt="set6.png">
+                    <p class="showcase__title">Классическая</p>
+                    <p class="showcase__description">33 см. | 590 г. | 1490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">390</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/bavarian.png" alt="set10.png">
+                    <p class="showcase__title">Баварская</p>
+                    <p class="showcase__description">33 см. | 680 г. | 1350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">480</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/vegeterian.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Вегитерианская</p>
+                    <p class="showcase__description">33 см. | 755 г. | 1800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">380</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/pepperoni.png" alt="miniSet5.png">
+                    <p class="showcase__title">Пепперони</p>
+                    <p class="showcase__description">33 см. | 615 г. | 1400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">450</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/pizza/classic.png" alt="set6.png">
+                    <p class="showcase__title">Классическая</p>
+                    <p class="showcase__description">33 см. | 590 г. | 1490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">390</span> <span class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </section>
+    <section class="tabs">
+        <div class="tabs__nav centered">
+            <button onclick="switchThatTab(1)" id="tabs__button1">Новинки</button>
+            <button onclick="switchThatTab(2)" id="tabs__button2">Акции</button>
+        </div>
+        <section class="sets centered swiper-container s2" id="tabs__tab1">
+            <div class="swiper-wrapper">
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/kunsei.png" alt="set10.png">
+                    <p class="showcase__title">Кунсей батакон</p>
+                    <p class="showcase__description">8 шт. | 250 г. | 350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">260</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/unagi.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Унаги диру</p>
+                    <p class="showcase__description">8 шт. | 960 г. | 800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/philadelphia.png" alt="miniSet5.png">
+                    <p class="showcase__title">Филадельфия</p>
+                    <p class="showcase__description">8 шт. | 450 г. | 400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/mexican.png" alt="set6.png">
+                    <p class="showcase__title">Мексиканский</p>
+                    <p class="showcase__description">8 шт. | 460 г. | 490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">290</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/kunsei.png" alt="set10.png">
+                    <p class="showcase__title">Кунсей батакон</p>
+                    <p class="showcase__description">8 шт. | 250 г. | 350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">260</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/unagi.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Унаги диру</p>
+                    <p class="showcase__description">8 шт. | 960 г. | 800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/philadelphia.png" alt="miniSet5.png">
+                    <p class="showcase__title">Филадельфия</p>
+                    <p class="showcase__description">8 шт. | 450 г. | 400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/mexican.png" alt="set6.png">
+                    <p class="showcase__title">Мексиканский</p>
+                    <p class="showcase__description">8 шт. | 460 г. | 490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">290</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/kunsei.png" alt="set10.png">
+                    <p class="showcase__title">Кунсей батакон</p>
+                    <p class="showcase__description">8 шт. | 250 г. | 350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">260</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/unagi.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Унаги диру</p>
+                    <p class="showcase__description">8 шт. | 960 г. | 800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/philadelphia.png" alt="miniSet5.png">
+                    <p class="showcase__title">Филадельфия</p>
+                    <p class="showcase__description">8 шт. | 450 г. | 400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/mexican.png" alt="set6.png">
+                    <p class="showcase__title">Мексиканский</p>
+                    <p class="showcase__description">8 шт. | 460 г. | 490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">290</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/kunsei.png" alt="set10.png">
+                    <p class="showcase__title">Кунсей батакон</p>
+                    <p class="showcase__description">8 шт. | 250 г. | 350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">260</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/unagi.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Унаги диру</p>
+                    <p class="showcase__description">8 шт. | 960 г. | 800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/philadelphia.png" alt="miniSet5.png">
+                    <p class="showcase__title">Филадельфия</p>
+                    <p class="showcase__description">8 шт. | 450 г. | 400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/mexican.png" alt="set6.png">
+                    <p class="showcase__title">Мексиканский</p>
+                    <p class="showcase__description">8 шт. | 460 г. | 490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">290</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/kunsei.png" alt="set10.png">
+                    <p class="showcase__title">Кунсей батакон</p>
+                    <p class="showcase__description">8 шт. | 250 г. | 350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">260</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/unagi.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Унаги диру</p>
+                    <p class="showcase__description">8 шт. | 960 г. | 800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/philadelphia.png" alt="miniSet5.png">
+                    <p class="showcase__title">Филадельфия</p>
+                    <p class="showcase__description">8 шт. | 450 г. | 400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/mexican.png" alt="set6.png">
+                    <p class="showcase__title">Мексиканский</p>
+                    <p class="showcase__description">8 шт. | 460 г. | 490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">290</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+            </div>
+            </div>
+        
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </section>
+        <section class="sets centered swiper-container s2" id="tabs__tab2">
+            <div class="swiper-wrapper">
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/kunsei.png" alt="set10.png">
+                    <p class="showcase__title">Кунсей батакон</p>
+                    <p class="showcase__description">8 шт. | 250 г. | 350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">260</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/unagi.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Унаги диру</p>
+                    <p class="showcase__description">8 шт. | 960 г. | 800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/philadelphia.png" alt="miniSet5.png">
+                    <p class="showcase__title">Филадельфия</p>
+                    <p class="showcase__description">8 шт. | 450 г. | 400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/mexican.png" alt="set6.png">
+                    <p class="showcase__title">Мексиканский</p>
+                    <p class="showcase__description">8 шт. | 460 г. | 490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">290</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/kunsei.png" alt="set10.png">
+                    <p class="showcase__title">Кунсей батакон</p>
+                    <p class="showcase__description">8 шт. | 250 г. | 350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">260</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/unagi.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Унаги диру</p>
+                    <p class="showcase__description">8 шт. | 960 г. | 800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/philadelphia.png" alt="miniSet5.png">
+                    <p class="showcase__title">Филадельфия</p>
+                    <p class="showcase__description">8 шт. | 450 г. | 400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/mexican.png" alt="set6.png">
+                    <p class="showcase__title">Мексиканский</p>
+                    <p class="showcase__description">8 шт. | 460 г. | 490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">290</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/kunsei.png" alt="set10.png">
+                    <p class="showcase__title">Кунсей батакон</p>
+                    <p class="showcase__description">8 шт. | 250 г. | 350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">260</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/unagi.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Унаги диру</p>
+                    <p class="showcase__description">8 шт. | 960 г. | 800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/philadelphia.png" alt="miniSet5.png">
+                    <p class="showcase__title">Филадельфия</p>
+                    <p class="showcase__description">8 шт. | 450 г. | 400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/mexican.png" alt="set6.png">
+                    <p class="showcase__title">Мексиканский</p>
+                    <p class="showcase__description">8 шт. | 460 г. | 490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">290</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/kunsei.png" alt="set10.png">
+                    <p class="showcase__title">Кунсей батакон</p>
+                    <p class="showcase__description">8 шт. | 250 г. | 350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">260</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/unagi.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Унаги диру</p>
+                    <p class="showcase__description">8 шт. | 960 г. | 800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/philadelphia.png" alt="miniSet5.png">
+                    <p class="showcase__title">Филадельфия</p>
+                    <p class="showcase__description">8 шт. | 450 г. | 400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/mexican.png" alt="set6.png">
+                    <p class="showcase__title">Мексиканский</p>
+                    <p class="showcase__description">8 шт. | 460 г. | 490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">290</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/kunsei.png" alt="set10.png">
+                    <p class="showcase__title">Кунсей батакон</p>
+                    <p class="showcase__description">8 шт. | 250 г. | 350 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">260</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/unagi.png" alt="set8.png">
+                    <div class="showcase__sticker sticker_fire"></div>
+                    <p class="showcase__title">Унаги диру</p>
+                    <p class="showcase__description">8 шт. | 960 г. | 800 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/philadelphia.png" alt="miniSet5.png">
+                    <p class="showcase__title">Филадельфия</p>
+                    <p class="showcase__description">8 шт. | 450 г. | 400 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">280</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+                <div class="showcase__item swiper-slide">
+                    <img class="showcase__img" src="./assets/images/sets/rolls/mexican.png" alt="set6.png">
+                    <p class="showcase__title">Мексиканский</p>
+                    <p class="showcase__description">8 шт. | 460 г. | 490 Kkal</p>
+                    <div class="showcase__menu">
+                        <div>
+                            <p class="showcase__price"><span id="orderPrice">290</span> <span
+                                    class="showcase__price_super">руб.</span></p>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button onclick="regulateMyOrder()">–</button>
+                            <p id="orderCount" style="margin: 0 16px; font-family: 'Open Sans'; font-size: 14px;">1</p>
+                            <button onclick="regulateMyOrder()">+</button>
+                        </div>
+                    </div>
+                    <button class="showcase__button" onclick="makeMyOrder()"><span>В КОРЗИНУ</span></button>
+                </div>
+            </div>
+        
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </section>
+    </section>
+    <section class="text centered">
+        <h2 class="text__title">О компании</h2>
+        <div>
+            <h3>Заказ и доставка роллов, пиццы и WOK(Вок) в городе Курск</h3>
+            <div class="text__container">
+                <div class="text__article">
+                    <p>Суши МИЮШИ открылись в октябре 2012г. и уже завоевали успех у тех, кто ценит японскую кухню и качественное приготовление блюд.</p>
+                    <p>С 2013 года мы осуществляем не только доставку на дом, теперь для вас открыт наш уютный небольшой зал. Придя сюда, вы сможете плотно пообедать, насладиться прекрасными напитками, посидеть с друзьями или обзавестись новыми знакомствами.</p>
+                    <p>Открывая зал, Мы преследовали цель предоставить своим посетителям максимум удобства и комфорта, поэтому, придя сюда в первый раз, вы почувствуете себя как рыба в воде, окунувшись в домашнюю и теплую обстановку!</p>
+                    <p>Особое внимание мы уделяем организации доставки суши и других блюд, которая осуществляется только по г. Курске. Четкая и слаженная работа курьеров позволяет максимально сократить время от приготовления блюда до его попадания на стол заказчику. Как правило, оно составляет от 20 до 60 минут в зависимости от местонахождения клиента. Операторы службы доставки всегда осведомлены обо всех изменениях времени доставки и предупреждают клиентов заранее, а при возможных серьезных задержках в связи с дорожной ситуацией предложат Вам альтернативу. Мы беремся только за ту работу, которую можем выполнить в срок.</p>
+                    <p class="text__coverText">В меню суши МИЮШИ представлено все многообразие японской кухни. Классические суши, и роллы приготовлены в соответствии с традиционными рецептами. Для любителей нежных и тающих во рту блюд предлагаются роллы с мясом краба, а также для больших любителей копченого угря потрясающий ролл Дракон. Для желающих пробовать что-то новое и необычное – острые ГУНКАНЫ и новинка нашего меню - ИНАРИ, широкий выбор горячих роллов. Большим компаниям будет удобно заказать суши и роллы, объединенные в сеты, включающие сразу несколько видов каждого из этих блюд. Кроме того, меню суши МИЮШИ не ограничено только японской кухней, здесь всегда можно заказать горячие и холодные блюда ЛАПША или РИС WOK с различными мясными и рыбными наполнителями, салаты, горячие закуски и различные напитки.</p>
+                    <button class="text__button" onclick="uncoverThatText()">ПОКАЗАТЬ ЕЩЕ</button>
+                </div>
+                <div class="text__img">
+                    <img src="./assets/images/sidePicture.png" alt="sidePicture.png">
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer__assortment_alternative">
+            <div class="assortment__menu">
+                <div style="border-bottom: 2px solid #20353d;">
+                    <div id="footerButton" class="footer__wrapper centered" onclick="coverThat()">
+                        <p>Меню</p>
+                        <img src="./assets/images/arrowDown.png" alt="arrowDown.png">
+                    </div>
+                </div>
+                <div style="background-color: #20353d;">
+                    <ul class="centered covered">
+                        <li><a href="javascript:void(0)">Суши</a></li>
+                        <li><a href="javascript:void(0)">Гунканы</a></li>
+                        <li><a href="javascript:void(0)">Инари</a></li>
+                        <li><a href="javascript:void(0)">Супы</a></li>
+                        <li><a href="javascript:void(0)">Салаты</a></li>
+                        <li><a href="javascript:void(0)">Горячие закуски</a></li>
+                        <li><a href="javascript:void(0)">Десерты</a></li>
+                        <li><a href="javascript:void(0)">Напитки</a></li>
+                        <li><a href="javascript:void(0)">Дополнительно</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="assortment__container">
+                <div style="border-bottom: 2px solid #20353d;">
+                    <div id="footerButton" class="footer__wrapper centered" onclick="coverThat()">
+                        <p>Сеты</p>
+                        <img src="./assets/images/arrowDown.png" alt="arrowDown.png">
+                    </div>
+                </div>
+                <div style="background-color: #20353d;">
+                    <ul class="centered covered">
+                        <li><a href="javascript:void(0)">До 500 руб.</a></li>
+                        <li><a href="javascript:void(0)">До 1000 руб. (для двоих)</a></li>
+                        <li><a href="javascript:void(0)">До 1500 руб. (для двоих - троих)</a></li>
+                        <li><a href="javascript:void(0)">До 2000 руб. (большая компания)</a></li>
+                        <li><a href="javascript:void(0)">от 2000 руб. (очень большая компания)</a></li>
+                        <li><a href="javascript:void(0)">C угрем</a></li>
+                        <li><a href="javascript:void(0)">Горячие</a></li>
+                        <li><a href="javascript:void(0)">Запеченые</a></li>
+                        <li><a href="javascript:void(0)">Суши</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="assortment__container">
+                <div style="border-bottom: 2px solid #20353d;">
+                    <div id="footerButton" class="footer__wrapper centered" onclick="coverThat()">
+                        <p>Роллы</p>
+                        <img src="./assets/images/arrowDown.png" alt="arrowDown.png">
+                    </div>
+                </div>
+                <div style="background-color: #20353d;">
+                    <ul class="centered covered">
+                        <li><a href="javascript:void(0)">Традиционные/Классические</a></li>
+                        <li><a href="javascript:void(0)">Простые</a></li>
+                        <li><a href="javascript:void(0)">Теплые</a></li>
+                        <li><a href="javascript:void(0)">Запеченые</a></li>
+                        <li><a href="javascript:void(0)">Вегитерианские</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="assortment__container">
+                <div style="border-bottom: 2px solid #20353d;">
+                    <div id="footerButton" class="footer__wrapper centered" onclick="coverThat()">
+                        <p>Вок</p>
+                        <img src="./assets/images/arrowDown.png" alt="arrowDown.png">
+                    </div>
+                </div>
+                <div style="background-color: #20353d;">
+                    <ul class="centered covered">
+                        <li><a href="javascript:void(0)">Яичная</a></li>
+                        <li><a href="javascript:void(0)">Удон</a></li>
+                        <li><a href="javascript:void(0)">Гречневая</a></li>
+                        <li><a href="javascript:void(0)">Стеклянная</a></li>
+                        <li><a href="javascript:void(0)">Рис</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="assortment__container">
+                <div style="border-bottom: 2px solid #20353d;">
+                    <div id="footerButton" class="footer__wrapper centered" onclick="coverThat()">
+                        <p>Пицца</p>
+                        <img src="./assets/images/arrowDown.png" alt="arrowDown.png">
+                    </div>
+                </div>
+                <div style="background-color: #20353d;">
+                    <ul class="centered covered">
+                        <li><a href="javascript:void(0)">Мясная</a></li>
+                        <li><a href="javascript:void(0)">Рыбная</a></li>
+                        <li><a href="javascript:void(0)">Сырная</a></li>
+                        <li><a href="javascript:void(0)">Вегитерианская</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer__assortment centered">
+            <div class="assortment__menu">
+                <ul>
+                    <li><a href="javascript:void(0)">Суши</a></li>
+                    <li><a href="javascript:void(0)">Гунканы</a></li>
+                    <li><a href="javascript:void(0)">Инари</a></li>
+                    <li><a href="javascript:void(0)">Супы</a></li>
+                    <li><a href="javascript:void(0)">Салаты</a></li>
+                    <li><a href="javascript:void(0)">Горячие закуски</a></li>
+                    <li><a href="javascript:void(0)">Десерты</a></li>
+                    <li><a href="javascript:void(0)">Напитки</a></li>
+                    <li><a href="javascript:void(0)">Дополнительно</a></li>
+                </ul>
+            </div>
+            <div class="assortment__container">
+                <p>Сеты</p>
+                <div style="display: flex;">
+                    <div>
+                        <ul>
+                            <li><a href="javascript:void(0)">До 500 руб.</a></li>
+                            <li><a href="javascript:void(0)">До 1000 руб. (для двоих)</a></li>
+                            <li><a href="javascript:void(0)">До 1500 руб. (для двоих - троих)</a></li>
+                            <li><a href="javascript:void(0)">До 2000 руб. (большая компания)</a></li>
+                            <li><a href="javascript:void(0)">от 2000 руб. (очень большая компания)</a></li>
+                        </ul>
+                    </div>
+                    <div style="margin-left: 30px;">
+                        <ul>
+                            <li><a href="javascript:void(0)">C угрем</a></li>
+                            <li><a href="javascript:void(0)">Горячие</a></li>
+                            <li><a href="javascript:void(0)">Запеченые</a></li>
+                            <li><a href="javascript:void(0)">Суши</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="assortment__container">
+                <p>Роллы</p>
+                <div>
+                    <ul>
+                        <li><a href="javascript:void(0)">Традиционные/Классические</a></li>
+                        <li><a href="javascript:void(0)">Простые</a></li>
+                        <li><a href="javascript:void(0)">Теплые</a></li>
+                        <li><a href="javascript:void(0)">Запеченые</a></li>
+                        <li><a href="javascript:void(0)">Вегитерианские</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="assortment__container">
+                <p>Вок</p>
+                <div>
+                    <ul>
+                        <li><a href="javascript:void(0)">Яичная</a></li>
+                        <li><a href="javascript:void(0)">Удон</a></li>
+                        <li><a href="javascript:void(0)">Гречневая</a></li>
+                        <li><a href="javascript:void(0)">Стеклянная</a></li>
+                        <li><a href="javascript:void(0)">Рис</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="assortment__container">
+                <p>Пицца</p>
+                <div>
+                    <ul>
+                        <li><a href="javascript:void(0)">Мясная</a></li>
+                        <li><a href="javascript:void(0)">Рыбная</a></li>
+                        <li><a href="javascript:void(0)">Сырная</a></li>
+                        <li><a href="javascript:void(0)">Вегитерианская</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer__info centered">
+            <div class="info__copyright">
+                <p>МИЮШИ © 2017</p>
+                <p><a style="border-bottom: 1px dotted #6b6b6b;" href="javascript:void(0)">Соглашение на обработку персональных данных</a></p>
+            </div>
+            <div class="info__socials">
+                <ul>
+                    <li><a href="javascript:void(0)"><img src="./assets/images/icons/socials/insta.png" alt="insta.png"></a></li>
+                    <li><a href="javascript:void(0)"><img src="./assets/images/icons/socials/vk.png" alt="vk.png"></a></li>
+                    <li><a href="javascript:void(0)"><img src="./assets/images/icons/socials/facebook.png" alt="facebook.png"></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="./assets/swiper/swiper.js"></script>
+    <script src="./assets/swiper/swiper.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
