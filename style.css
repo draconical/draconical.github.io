@@ -426,6 +426,7 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
 
 .showcase__button span::after {

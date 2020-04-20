@@ -1,61 +1,3 @@
-var mySwiper1 = new Swiper ('.s1', {
-  // Optional parameters
-  direction: 'horizontal',
-  loop: true,
-
-  autoplay: {
-      delay: 2000,
-  },
-
-  // If we need pagination
-  pagination: {
-    el: '.swiper-pagination',
-  },
-
-  // Navigation arrows
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  }
-});
-
-var mySwiper2 = new Swiper ('.s2', {
-  // Optional parameters
-  direction: 'horizontal',
-  loop: false,
-  touchStartPreventDefault: false,
-
-  // If we need pagination
-  pagination: {
-    el: '.swiper-pagination',
-  },
-
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-
-  breakpoints: {
-    1170: {
-      slidesPerView: 4,
-      slidesPerGroup: 5,
-      spaceBetween: 40,
-    },
-
-    765: {
-      slidesPerView: 3,
-      slidesPerGroup: 5,
-      spaceBetween: 30,
-    },
-
-    375: {
-      slidesPerView: 1,
-      slidesPerGroup: 1,
-      spaceBetween: 10,
-    }
-  }
-});
-
 function openNav() {
   document.getElementById("mySidenav").style.width = "80%";
 }
@@ -190,16 +132,80 @@ function onInit () {
   document.getElementById("tabs__tab2").style.display = "none";
 
   set();
+
+  var mySwiper1 = new Swiper ('.s1', {
+    // Optional parameters
+    direction: 'horizontal',
+    loop: true,
+  
+    autoplay: {
+        delay: 2000,
+    },
+  
+    // If we need pagination
+    pagination: {
+      el: '.swiper-pagination',
+    },
+  
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    }
+  });
+  
+  var mySwiper2 = new Swiper ('.s2', {
+    // Optional parameters
+    direction: 'horizontal',
+    loop: false,
+    touchStartPreventDefault: false,
+  
+    // If we need pagination
+    pagination: {
+      el: '.swiper-pagination',
+    },
+  
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  
+    breakpoints: {
+      1170: {
+        slidesPerView: 4,
+        slidesPerGroup: 5,
+        spaceBetween: 40,
+      },
+  
+      765: {
+        slidesPerView: 3,
+        slidesPerGroup: 5,
+        spaceBetween: 30,
+      },
+  
+      375: {
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        spaceBetween: 10,
+      }
+    }
+  });
 }
 
 function save () {
   sessionStorage.setItem("html", document.body.innerHTML);
+  sessionStorage.setItem("sum", sum);
 }
 
 function set () {
   var content = sessionStorage.getItem("html");
   if (content) {
     document.body.innerHTML = content;
+  }
+  
+  var content2 = sessionStorage.getItem("sum");
+  if (content2) {
+    sum = sum + parseInt(content2);
   }
 }
 
