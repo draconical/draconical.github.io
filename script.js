@@ -110,6 +110,8 @@ function makeMyOrder () {
 
   sum = sum + parseInt(orderPrice.textContent.replace(/\s+/g, ""));
   summarizeMyOrder();
+
+  save();
 }
 
 function switchThatTab (i) {
@@ -186,6 +188,19 @@ function summarizeMyOrder () {
 function onInit () {
   document.getElementById("tabs__button1").style.color = "#fd5a20";
   document.getElementById("tabs__tab2").style.display = "none";
+
+  set();
+}
+
+function save () {
+  sessionStorage.setItem("html", document.body.innerHTML);
+}
+
+function set () {
+  var content = sessionStorage.getItem("html");
+  if (content) {
+    document.body.innerHTML = content;
+  }
 }
 
 onInit();
