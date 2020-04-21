@@ -694,7 +694,6 @@ img {
     box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
 }
   
@@ -708,6 +707,7 @@ img {
 
 .sidenav a:first-child {
     color: #fd5a20;
+    margin-top: 0;
 }
   
 .sidenav .closebtn {
@@ -731,6 +731,10 @@ img {
         .centered {
             width: 95%;
             margin: 0 auto;
+        }
+
+        .sidenav a {
+            margin-top: 15%;
         }
     
         /*Шапка*/
@@ -872,6 +876,10 @@ img {
         /*Общее*/
         .centered {
             width: 90%;
+        }
+
+        .sidenav a {
+            margin-top: 25%;
         }
         
         /*Шапка*/
