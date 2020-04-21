@@ -76,6 +76,8 @@ function switchThatTab (i) {
     button2.style.color = "#fd5a20";
     button1.style.color = "#acacac";
   }
+
+  swiperInit();
 }
 
 function coverThat () {
@@ -133,6 +135,10 @@ function onInit () {
 
   set();
 
+  swiperInit();  
+}
+
+function swiperInit () {
   var mySwiper1 = new Swiper ('.s1', {
     // Optional parameters
     direction: 'horizontal',
