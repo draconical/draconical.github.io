@@ -1,0 +1,99 @@
+@import "../../common/styles/variables.scss";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 32px;
+
+  .button-panel {
+    display: flex;
+    flex-direction: row;
+
+    gap: 16px;
+  }
+
+  .dice-set {
+    width: auto;
+    height: auto;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    gap: 32px;
+
+    .dice {
+      width: 65px;
+      height: 65px;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+
+      border: 4px solid $red-palette;
+      border-radius: 10px;
+      rotate: 45deg;
+
+      transition: 0.35s ease-out;
+
+      .num {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 32px;
+        font-weight: 500;
+
+        color: $red-palette;
+        rotate: -45deg;
+      }
+    }
+
+    .dice:hover {
+      cursor: pointer;
+
+      scale: 1.15;
+      transition: 0.35s ease-out;
+    }
+
+    .dice.checked {
+      background: $orange-palette;
+
+      .num {
+        color: white;
+      }
+    }
+  }
+
+  .result {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+  }
+
+  button {
+    padding: 12px 28px;
+
+    background-color: $violet-palette;
+    border: 1px solid $violet-palette;
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+
+    transition: 0.35s ease-out;
+  }
+
+  button:hover {
+    background-color: $darker-violet-palette;
+    border: 1px solid $darker-violet-palette;
+
+    transition: 0.35s ease-out;
+  }
+}
