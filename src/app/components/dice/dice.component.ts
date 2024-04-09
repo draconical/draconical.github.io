@@ -1,7 +1,9 @@
-import { DiceModel } from './../../models/dice.model';
+import { ClashService } from './../../services/clash.service';
+import { DiceModel } from '../../models/dice.model';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CombinationsModel, CombinationsEnum, CombinationTypesEnum } from 'src/models/combination.model';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { CombinationsModel, CombinationsEnum, CombinationTypesEnum } from 'src/app/models/combination.model';
+import { AdversariesEnum } from 'src/app/services/clash.service';
 
 @Component({
   selector: 'app-dice',
@@ -23,11 +25,13 @@ import { CombinationsModel, CombinationsEnum, CombinationTypesEnum } from 'src/m
         <div class="dice"><div class="num">d6</div></div>
     </div>
     <div *ngIf="result" class="result">
-        Результат: {{ result }}
+        Результат {{ adversaryToken === 'player' ? 'игрока' : 'оппонента' }}: {{ result }}
     </div>
   `
 })
 export class DiceComponent {
+  @Input() adversaryToken!: AdversariesEnum;
+
   dices!: DiceModel[];
 
   rerollLimit: number = 2;
@@ -36,7 +40,7 @@ export class DiceComponent {
 
   result = '';
 
-  constructor() { }
+  constructor(private clashService: ClashService) { }
 
   ngOnInit(): void { }
 
@@ -99,6 +103,33 @@ export class DiceComponent {
 
   private _sortDices(): void {
     this.dices.sort((a, b) => a.value - b.value);
+  }
+
+  private _setClashResult(combinations: CombinationsModel): void {
+    let nominal: number = 0;
+
+    const kicker: number = combinations.kicker.nominal;
+    const keys: CombinationTypesEnum[] = [
+      CombinationTypesEnum.pair,
+      CombinationTypesEnum.double,
+      CombinationTypesEnum.triple,
+      CombinationTypesEnum.street,
+      CombinationTypesEnum.fullhouse,
+      CombinationTypesEnum.quadriple,
+      CombinationTypesEnum.poker,
+    ];
+
+    keys.forEach((key) => {
+      const value = combinations[key];
+      if (!value.isThere) return;
+
+      nominal = Number(value.base.toString() + '.' + value.nominal.toString());
+    })
+
+    const finalResult = combinations.kicker.isThere ? Number(nominal.toString() + kicker.toString()) : nominal;
+
+    console.log(`Комбинация ${this.adversaryToken === 'player' ? 'игрока' : 'оппонента'}:`, finalResult);
+    this.clashService.setRollValue(this.adversaryToken, finalResult);
   }
 
   private _calcCombination(): void {
@@ -214,14 +245,11 @@ export class DiceComponent {
 
           combinationFound = true;
         }
-
-        return;
       });
     }
 
     checkCombinations();
     setResult();
-
-    console.log('Комбинации: ', combinations);
+    this._setClashResult(combinations);
   }
 }

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DiceComponent } from 'src/components/dice/dice.component';
+import { DiceComponent } from 'src/app/components/dice/dice.component';
 
 @NgModule({
   declarations: [
