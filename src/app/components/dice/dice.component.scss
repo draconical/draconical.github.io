@@ -1,4 +1,4 @@
-@import "../../common/styles/variables.scss";
+@import '../../common/styles/variables.scss';
 
 :host {
   display: flex;
@@ -91,8 +91,8 @@
   }
 
   button:hover {
-    background-color: $darker-violet-palette;
-    border: 1px solid $darker-violet-palette;
+    background-color: $purple-palette;
+    border: 1px solid $purple-palette;
 
     transition: 0.35s ease-out;
   }

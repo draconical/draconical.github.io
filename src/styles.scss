@@ -3,7 +3,21 @@
   margin: 0;
 }
 
-html, body, .app {
-  width: 100%;
-  height: 100%;
+@import './app/common/styles/variables.scss';
+
+html, body{
+  width: 100vw;
+  height: 100vh;
+
+  background: $purple-palette;
+}
+
+@import './app/common/styles/fonts.scss';
+
+@font-face {
+  font-family: 'Jost';
+  src:
+    local('Jost'),
+    url('./assets/fonts/Jost-VariableFont_wght.ttf'),
+    url('./assets/fonts/Jost-Italic-VariableFont_wght.ttf');
 }

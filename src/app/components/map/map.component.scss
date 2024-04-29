@@ -1,0 +1,56 @@
+@import '../../common/styles/variables.scss';
+
+:host {
+  width: 400px;
+  height: 100%;
+
+  .map {
+    height: calc(720px - 32px);
+
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    gap: $container-padding;
+
+    .map__location {
+      height: 400px;
+      min-height: 400px;
+
+      box-sizing: border-box;
+
+      border-radius: $container-radius;
+      background-color: black;
+      box-shadow: $container-shadow;
+    }
+
+    .map__description {
+      width: 400px;
+      flex-grow: 1;
+
+      padding: $container-padding;
+      box-sizing: border-box;
+
+      overflow: hidden;
+
+      display: flex;
+      flex-direction: column;
+
+      gap: calc($container-padding / 2);
+
+      border-radius: $container-radius;
+      background-color: $orange-palette;
+      box-shadow: $container-shadow;
+
+      .map__description__header {
+        height: 32px;
+      }
+
+      .map__description__text {
+        flex-grow: 1;
+
+        overflow: auto;
+      }
+    }
+  }
+}

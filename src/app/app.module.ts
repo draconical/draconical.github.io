@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DiceComponent } from 'src/app/components/dice/dice.component';
+import { ConsoleComponent } from './components/console/console.component';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import { DiceComponent } from 'src/app/components/dice/dice.component';
     BrowserModule,
     AppRoutingModule,
     DiceComponent,
+    ConsoleComponent,
+    MapComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
