@@ -17,11 +17,73 @@
       height: 400px;
       min-height: 400px;
 
+      position: relative;
+
+      padding: $container-padding * 2;
       box-sizing: border-box;
 
       border-radius: $container-radius;
       background-color: black;
       box-shadow: $container-shadow;
+
+      .locations {
+        width: 100%;
+        height: 100%;
+
+        display: grid;
+        grid-template-rows: 33% 33% 33%;
+        grid-template-columns: 33% 33% 33%;
+
+        .locations__item {
+          background-color: $orange-palette;
+          border-radius: $container-radius;
+
+          margin: 5px;
+
+          img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+          }
+        }
+
+        .locations__item.current {
+          background-color: white;
+        }
+      }
+
+      .north-sign {
+        position: absolute;
+        top: 5px;
+        left: 49%;
+
+        color: white;
+      }
+
+      .west-sign {
+        position: absolute;
+        top: 49%;
+        right: 14px;
+
+        color: white;
+      }
+
+      .south-sign {
+        position: absolute;
+        bottom: 7px;
+        left: 49%;
+
+        color: white;
+      }
+
+      .east-sign {
+        position: absolute;
+        top: 49%;
+        left: 14px;
+
+        color: white;
+      }
     }
 
     .map__description {

@@ -1,4 +1,4 @@
-export enum CombinationsEnum {
+export enum ICombinationsEnum {
   Kicker = 0,
   Pair = 1,
   Double = 2,
@@ -9,7 +9,7 @@ export enum CombinationsEnum {
   Poker = 7
 }
 
-export enum CombinationTypesEnum {
+export enum ICombinationTypesEnum {
   kicker = 'kicker',
   pair = 'pair',
   double = 'double',
@@ -20,19 +20,19 @@ export enum CombinationTypesEnum {
   poker = 'poker',
 }
 
-export interface CombinationItemModel {
+export interface ICombinationItemModel {
   isThere: boolean;
-  base: CombinationsEnum,
+  base: ICombinationsEnum;
   nominal: number;
 }
 
-export interface CombinationsModel {
-  kicker: CombinationItemModel;
-  pair: CombinationItemModel;
-  double: CombinationItemModel;
-  triple: CombinationItemModel;
-  street: CombinationItemModel;
-  fullhouse: CombinationItemModel;
-  quadriple: CombinationItemModel;
-  poker: CombinationItemModel;
+export interface ICombinationsModel {
+  kicker: ICombinationItemModel;
+  pair: ICombinationItemModel;
+  double: ICombinationItemModel;
+  triple: ICombinationItemModel;
+  street: ICombinationItemModel;
+  fullhouse: ICombinationItemModel;
+  quadriple: ICombinationItemModel;
+  poker: ICombinationItemModel;
 }

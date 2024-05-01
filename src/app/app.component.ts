@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AdversariesEnum } from './services/clash.service';
+import { IAdversariesEnum } from './services/clash.service';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +7,5 @@ import { AdversariesEnum } from './services/clash.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  adversaryToken = AdversariesEnum;
+  adversaryToken = IAdversariesEnum;
 }

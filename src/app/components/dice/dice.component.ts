@@ -1,9 +1,9 @@
 import { ClashService } from './../../services/clash.service';
-import { DiceModel } from '../../models/dice.model';
+import { IDiceModel } from '../../models/dice.model';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { CombinationsModel, CombinationsEnum, CombinationTypesEnum } from 'src/app/models/combination.model';
-import { AdversariesEnum } from 'src/app/services/clash.service';
+import { ICombinationsModel, ICombinationsEnum, ICombinationTypesEnum } from 'src/app/models/combination.model';
+import { IAdversariesEnum } from 'src/app/services/clash.service';
 
 @Component({
   selector: 'app-dice',
@@ -30,9 +30,9 @@ import { AdversariesEnum } from 'src/app/services/clash.service';
   `
 })
 export class DiceComponent {
-  @Input() adversaryToken!: AdversariesEnum;
+  @Input() adversaryToken!: IAdversariesEnum;
 
-  dices!: DiceModel[];
+  dices!: IDiceModel[];
 
   rerollLimit: number = 2;
   currentReroll: number[] = [];
@@ -44,7 +44,7 @@ export class DiceComponent {
 
   ngOnInit(): void { }
 
-  checkDiceForReroll(dice: DiceModel): void {
+  checkDiceForReroll(dice: IDiceModel): void {
     if (dice.checkedForReroll === false) {
       if (this.currentReroll.length >= this.rerollLimit || this.rerollAlreadyDone) return;
     }
@@ -54,7 +54,7 @@ export class DiceComponent {
   }
 
   generateDices(): void {
-    const newSet: DiceModel[] = [];
+    const newSet: IDiceModel[] = [];
 
     for (let i = 1; i <= 5; i++) {
       newSet.push(this._createDiceInstance());
@@ -94,7 +94,7 @@ export class DiceComponent {
     this.currentReroll = diceIndexes;
   }
 
-  private _createDiceInstance(): DiceModel {
+  private _createDiceInstance(): IDiceModel {
     return {
       value: this._randomInt(1, 5),
       checkedForReroll: false
@@ -105,18 +105,18 @@ export class DiceComponent {
     this.dices.sort((a, b) => a.value - b.value);
   }
 
-  private _setClashResult(combinations: CombinationsModel): void {
+  private _setClashResult(combinations: ICombinationsModel): void {
     let nominal: number = 0;
 
     const kicker: number = combinations.kicker.nominal;
-    const keys: CombinationTypesEnum[] = [
-      CombinationTypesEnum.pair,
-      CombinationTypesEnum.double,
-      CombinationTypesEnum.triple,
-      CombinationTypesEnum.street,
-      CombinationTypesEnum.fullhouse,
-      CombinationTypesEnum.quadriple,
-      CombinationTypesEnum.poker,
+    const keys: ICombinationTypesEnum[] = [
+      ICombinationTypesEnum.pair,
+      ICombinationTypesEnum.double,
+      ICombinationTypesEnum.triple,
+      ICombinationTypesEnum.street,
+      ICombinationTypesEnum.fullhouse,
+      ICombinationTypesEnum.quadriple,
+      ICombinationTypesEnum.poker,
     ];
 
     keys.forEach((key) => {
@@ -137,18 +137,18 @@ export class DiceComponent {
       .sort((a, b) => a.value - b.value)
       .map((dice) => dice.value);
 
-    const combinations: CombinationsModel = {
-      kicker: { isThere: false, base: CombinationsEnum.Kicker, nominal: 0 },
-      pair: { isThere: false, base: CombinationsEnum.Pair, nominal: 0 },
-      double: { isThere: false, base: CombinationsEnum.Double, nominal: 0 },
-      triple: { isThere: false, base: CombinationsEnum.Triple, nominal: 0 },
-      street: { isThere: false, base: CombinationsEnum.Street, nominal: 0 },
-      fullhouse: { isThere: false, base: CombinationsEnum.Fullhouse, nominal: 0 },
-      quadriple: { isThere: false, base: CombinationsEnum.Quadriple, nominal: 0 },
-      poker: { isThere: false, base: CombinationsEnum.Poker, nominal: 0 }
+    const combinations: ICombinationsModel = {
+      kicker: { isThere: false, base: ICombinationsEnum.Kicker, nominal: 0 },
+      pair: { isThere: false, base: ICombinationsEnum.Pair, nominal: 0 },
+      double: { isThere: false, base: ICombinationsEnum.Double, nominal: 0 },
+      triple: { isThere: false, base: ICombinationsEnum.Triple, nominal: 0 },
+      street: { isThere: false, base: ICombinationsEnum.Street, nominal: 0 },
+      fullhouse: { isThere: false, base: ICombinationsEnum.Fullhouse, nominal: 0 },
+      quadriple: { isThere: false, base: ICombinationsEnum.Quadriple, nominal: 0 },
+      poker: { isThere: false, base: ICombinationsEnum.Poker, nominal: 0 }
     }
 
-    const setCombinationValue = (type: CombinationTypesEnum, nominal: number) => {
+    const setCombinationValue = (type: ICombinationTypesEnum, nominal: number) => {
       combinations[type].isThere = true;
       combinations[type].nominal = nominal;
     }
@@ -159,7 +159,7 @@ export class DiceComponent {
       });
 
       if (isStreet !== 0) {
-        setCombinationValue(CombinationTypesEnum.street, isStreet);
+        setCombinationValue(ICombinationTypesEnum.street, isStreet);
         return;
       }
 
@@ -168,44 +168,44 @@ export class DiceComponent {
 
         switch (filtered.length) {
           case 1:
-            setCombinationValue(CombinationTypesEnum.kicker, i);
+            setCombinationValue(ICombinationTypesEnum.kicker, i);
             break;
           case 2:
             if (!combinations.pair.isThere) {
-              setCombinationValue(CombinationTypesEnum.pair, i);
+              setCombinationValue(ICombinationTypesEnum.pair, i);
             } else {
-              setCombinationValue(CombinationTypesEnum.double, Number(`${i}${combinations.pair.nominal}`));
+              setCombinationValue(ICombinationTypesEnum.double, Number(`${i}${combinations.pair.nominal}`));
             }
             break;
           case 3:
-            setCombinationValue(CombinationTypesEnum.triple, i);
+            setCombinationValue(ICombinationTypesEnum.triple, i);
             break;
           case 4:
-            setCombinationValue(CombinationTypesEnum.quadriple, i);
+            setCombinationValue(ICombinationTypesEnum.quadriple, i);
             break;
           case 5:
-            setCombinationValue(CombinationTypesEnum.poker, i);
+            setCombinationValue(ICombinationTypesEnum.poker, i);
             break;
           default:
             break;
         }
 
         if (combinations.triple.isThere && combinations.pair.isThere) {
-          setCombinationValue(CombinationTypesEnum.fullhouse, Number(`${combinations.triple.nominal}${combinations.pair.nominal}`));
+          setCombinationValue(ICombinationTypesEnum.fullhouse, Number(`${combinations.triple.nominal}${combinations.pair.nominal}`));
         }
       }
     }
 
     const setResult = () => {
-      const resultTypes: CombinationTypesEnum[] = [
-        CombinationTypesEnum.poker,
-        CombinationTypesEnum.quadriple,
-        CombinationTypesEnum.fullhouse,
-        CombinationTypesEnum.street,
-        CombinationTypesEnum.triple,
-        CombinationTypesEnum.double,
-        CombinationTypesEnum.pair,
-        CombinationTypesEnum.kicker,
+      const resultTypes: ICombinationTypesEnum[] = [
+        ICombinationTypesEnum.poker,
+        ICombinationTypesEnum.quadriple,
+        ICombinationTypesEnum.fullhouse,
+        ICombinationTypesEnum.street,
+        ICombinationTypesEnum.triple,
+        ICombinationTypesEnum.double,
+        ICombinationTypesEnum.pair,
+        ICombinationTypesEnum.kicker,
       ];
 
       let combinationFound = false;
@@ -217,28 +217,28 @@ export class DiceComponent {
 
         if (combination.isThere) {
           switch (resType) {
-            case CombinationTypesEnum.poker:
+            case ICombinationTypesEnum.poker:
               this.result = `покер с номиналом ${combination.nominal}`;
               break;
-            case CombinationTypesEnum.quadriple:
+            case ICombinationTypesEnum.quadriple:
               this.result = `каре с номиналом ${combination.nominal}`;
               break;
-            case CombinationTypesEnum.fullhouse:
+            case ICombinationTypesEnum.fullhouse:
               this.result = `фулл-хаус c тройкой из ${combination.nominal.toString()[0]} и парой из ${combination.nominal.toString()[1]}`;
               break;
-            case CombinationTypesEnum.street:
+            case ICombinationTypesEnum.street:
               this.result = `стрит с кикером ${combination.nominal}`;
               break;
-            case CombinationTypesEnum.triple:
+            case ICombinationTypesEnum.triple:
               this.result = `тройка из ${combination.nominal}`;
               break;
-            case CombinationTypesEnum.double:
+            case ICombinationTypesEnum.double:
               this.result = `две пары из ${combination.nominal.toString()[0]} и ${combination.nominal.toString()[1]}`;
               break;
-            case CombinationTypesEnum.pair:
+            case ICombinationTypesEnum.pair:
               this.result = `пара из ${combination.nominal}`;
               break;
-            case CombinationTypesEnum.kicker:
+            case ICombinationTypesEnum.kicker:
               this.result = 'кикер с номиналом ${combination.nominal}`';
               break;
           }

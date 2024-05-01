@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { ILocationModel } from 'src/app/models/location.model';
+import { MapService } from 'src/app/services/map.service';
 
 @Component({
   selector: 'app-map',
@@ -10,19 +13,34 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   template: `
     <div class="map">
       <div class="map__location">
+        <span class="north-sign jost semibold">С</span>
+        <span class="west-sign jost semibold">З</span>
+        <span class="south-sign jost semibold">Ю</span>
+        <span class="east-sign jost semibold">В</span>
 
+        <div class="locations">
+          <div *ngFor="let location of (locations$ | async)" class="locations__item" [ngClass]="{'current': (currentLocation$ | async)?.id === location.id}">
+            <img *ngIf="location.isKnown === true" [src]="location.tileSrc">
+          </div>
+        </div>
       </div>
       <div class="map__description">
         <div class="map__description__header jost subheader bold">Описание локации</div>
         <div class="map__description__text jost">
-          Здесь будет описание локации.
+          {{ (this.currentLocation$ | async)?.description }}
         </div>
       </div>
     </div>
   `
 })
 export class MapComponent {
-  constructor() { }
+  currentLocation$!: BehaviorSubject<ILocationModel>;
+  locations$!: BehaviorSubject<ILocationModel[]>;
 
-  ngOnInit(): void { }
+  constructor(private mapService: MapService) { }
+
+  ngOnInit(): void {
+    this.currentLocation$ = this.mapService.getCurrentLocation();
+    this.locations$ = this.mapService.getLocations();
+  }
 }
