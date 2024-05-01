@@ -6,10 +6,10 @@ import { ILocationModel } from '../models/location.model';
   providedIn: 'root',
 })
 export class MapService {
-  private currentLocation$!: BehaviorSubject<ILocationModel>;
+  private currentLocation$: BehaviorSubject<ILocationModel> = new BehaviorSubject<ILocationModel>({ id: 0, isKnown: false, tileSrc: '', description: '' });
   private locations: ILocationModel[] = [
     {
-      id: 1, isKnown: true, tileSrc: '../../../assets/tiles/room1_gate.png',
+      id: 1, isKnown: false, tileSrc: '../../../assets/tiles/room1_gate.png',
       description: 'Каменная арка, обвитая плющём; сразу за ней виднеется лестница, ведущая вниз - в склеп.'
     },
     {
@@ -21,7 +21,10 @@ export class MapService {
       description: 'Просторная комната, в центре которой расположен фонтан.'
     },
 
-    { id: 4, isKnown: false, tileSrc: '../../../assets/tiles/tile1_pass_ver.png', description: 'Скрытый путь, ведущий обратно ко входу.' },
+    {
+      id: 4, isKnown: false, tileSrc: '../../../assets/tiles/tile1_pass_ver.png',
+      description: 'Скрытый путь, ведущий обратно ко входу.'
+    },
     {
       id: 5, isKnown: false, tileSrc: '',
       description: ''
@@ -46,9 +49,7 @@ export class MapService {
   ];
   private locations$: BehaviorSubject<ILocationModel[]> = new BehaviorSubject<ILocationModel[]>(this.locations);
 
-  constructor() {
-    this.currentLocation$ = new BehaviorSubject<ILocationModel>(this.locations[0]);
-  }
+  constructor() { }
 
   private discoverLocation(id: number): void {
     this.locations[id - 1].isKnown = true;

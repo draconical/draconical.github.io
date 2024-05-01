@@ -23,7 +23,7 @@
       display: flex;
       flex-direction: column;
 
-      gap: ($container-padding / 2);
+      gap: calc($container-padding / 2);
 
       background-color: $orange-palette;
       border-radius: $container-radius;
@@ -37,6 +37,17 @@
         flex-grow: 1;
 
         overflow: auto;
+
+        .message {
+          display: flex;
+          flex-direction: row;
+
+          gap: 8px;
+
+          .message__source {
+            width: 110px;
+          }
+        }
       }
 
       .console__input {
