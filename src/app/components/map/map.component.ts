@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/
 import { BehaviorSubject } from 'rxjs';
 import { ILocationModel } from 'src/app/models/location.model';
 import { MapService } from 'src/app/services/map.service';
+import { getChipsText } from '../helpers/common.helper';
 
 @Component({
   selector: 'app-map',
@@ -29,6 +30,7 @@ import { MapService } from 'src/app/services/map.service';
         <div class="map__description__text jost">
           {{ (this.currentLocation$ | async)?.description }}
         </div>
+        <div class="jost" [innerHTML]="currentLocationObjectNames"></div> 
       </div>
     </div>
   `
@@ -37,10 +39,19 @@ export class MapComponent {
   currentLocation$!: BehaviorSubject<ILocationModel>;
   locations$!: BehaviorSubject<ILocationModel[]>;
 
+  currentLocationObjectNames: string = '';
+
   constructor(private mapService: MapService) { }
 
   ngOnInit(): void {
     this.currentLocation$ = this.mapService.getCurrentLocation();
     this.locations$ = this.mapService.getLocations();
+
+    this.currentLocation$.subscribe((location) => {
+      if (!location) return;
+
+      const locationObjectNames = location.objects.map((object) => object.name);
+      this.currentLocationObjectNames = `Объекты для взаимодействия: ${getChipsText(locationObjectNames, 'noun')}`;
+    });
   }
 }

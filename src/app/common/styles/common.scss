@@ -1,0 +1,28 @@
+@import '../styles/variables.scss';
+
+.chips-wrapper {
+  max-height: 57px;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  gap: 4px;
+
+  overflow: auto;
+}
+
+.chip {
+  padding: 0 8px;
+
+  border-radius: 8px;
+  color: white;
+}
+
+.chip.verb {
+  background-color: $verb-chip;
+}
+
+.chip.noun {
+  background-color: $noun-chip;
+}

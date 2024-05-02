@@ -10,14 +10,18 @@ export class ConsoleService {
 
   constructor() { }
 
-  addNewMessage(newMessage: IMessageModel): void {
-    const temp = this.messages$.getValue();
+  addNewMessage(newMessage: IMessageModel, timeout?: number): void {
+    setTimeout(() => {
+      const temp = this.messages$.getValue();
 
-    this.messages$.next([...temp, newMessage]);
+      this.messages$.next([...temp, newMessage]);
+    }, timeout ? timeout * 1000 : 0);
   }
 
   clearMessages(): void {
-    this.messages$.next([]);
+    setTimeout(() => {
+      this.messages$.next([]);
+    }, 0);
   }
 
   getMessages(): BehaviorSubject<IMessageModel[]> {

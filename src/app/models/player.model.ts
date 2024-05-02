@@ -1,6 +1,7 @@
 export interface IObject {
+  id: number;
   name: string;
-  actions: IAction;
+  actions: IAction[];
 }
 
 export interface IAction {

@@ -45,8 +45,12 @@
           gap: 8px;
 
           .message__source {
-            width: 110px;
+            min-width: 110px;
           }
+        }
+
+        .message:not(:first-child) {
+          margin-top: calc($container-padding / 2);
         }
       }
 
