@@ -13,7 +13,7 @@ export class QuestService {
       id: 1, currentStep: 0, steps: [
         () => {
           this.consoleService.addNewMessage({
-            source: this.messageSourceTypes.Storyteller,
+            source: IMessageSourceEnum.Storyteller,
             value: `
                     Добро пожаловать в Dicegeon!
                     <br> Это мой пет-проект, вдохновленный браузерными MMO начала 00-х и MUD-ами.
@@ -22,7 +22,7 @@ export class QuestService {
           }, 1);
 
           this.consoleService.addNewMessage({
-            source: this.messageSourceTypes.Storyteller,
+            source: IMessageSourceEnum.Storyteller,
             value: `Осмотри немного интерфейс и, когда будешь готов(а), введи команду ${getSemiboldText('начать игру')} в строку ввода ниже.`,
           }, 2);
         },
@@ -36,7 +36,7 @@ export class QuestService {
       id: 2, currentStep: 0, steps: [
         () => {
           this.consoleService.addNewMessage({
-            source: this.messageSourceTypes.Storyteller,
+            source: IMessageSourceEnum.Storyteller,
             value: `
                     Спустя пару часов брождения по лесу, ты находить каменное строение, которое, похоже, ведёт вниз - в тот самый склеп, что описывали местные жители.
                     <br> Вход зарос плющём. Но ты ведь подготовился, верно?..
@@ -44,29 +44,35 @@ export class QuestService {
           }, 0.3);
 
           this.consoleService.addNewMessage({
-            source: this.messageSourceTypes.System,
+            source: IMessageSourceEnum.System,
             value: `Самое время ${getSemiboldText('проверить инвентарь')}.`,
           }, 0.6);
         },
         () => {
           this.consoleService.addNewMessage({
-            source: this.messageSourceTypes.Storyteller,
+            source: IMessageSourceEnum.Storyteller,
             value: `Меч мог бы сгодиться! Итак, вернёмся к плющу.`,
           }, 0.3);
 
           this.consoleService.addNewMessage({
-            source: this.messageSourceTypes.System,
+            source: IMessageSourceEnum.System,
             value: `Ты можешь осматривать различные элементы - будь то вещи из инвентаря или объекты окружения. Попробуй ${getSemiboldText('осмотреть плющ')}.`,
           }, 0.6);
         },
         () => {
+          this.consoleService.addNewMessage({
+            source: IMessageSourceEnum.Storyteller,
+            value: `Ты достаёшь меч из ножек и берёшься за дело. Серия ударов, треск ветвей и вот - путь открыт!`
+          }, 0.3);
 
+          this.consoleService.addNewMessage({
+            source: IMessageSourceEnum.System,
+            value: `Теперь ты можешь передвигаться между локациями. Попробуй ${getSemiboldText('идти на восток')}.`
+          }, 0.6);
         },
       ]
     },
   ];
-
-  messageSourceTypes = IMessageSourceEnum;
 
   constructor(
     private consoleService: ConsoleService,

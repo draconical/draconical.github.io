@@ -1,63 +1,28 @@
+
 import { Injectable } from "@angular/core";
-import { IAction, IPlayer } from "../models/player.model";
+import { IAction, IPlayerModel } from "../models/player.model";
 import { MapService } from "./map.service";
 import { ConsoleService } from "./console.service";
 import { QuestService } from "./quest.service";
 import { IMessageSourceEnum } from "../models/message.model";
 import { getChipsText } from "../components/helpers/common.helper";
+import { ObjectService } from "./object.service";
+
+export interface IContext {
+  playerContext: PlayerService;
+  locationContext: MapService;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlayerService {
-  private player: IPlayer = {
+  private player: IPlayerModel = {
     hp: 4,
     inventory: [
-      {
-        id: 1,
-        name: 'меч',
-        actions: [
-          {
-            command: 'осмотреть',
-            func: () => {
-              this.consoleService.addNewMessage({
-                source: IMessageSourceEnum.System,
-                value: 'Это обыкновенный меч средней длины. На лезвии видны несколько зазубрин. Таким можно и навредить...'
-              })
-            }
-          }
-        ]
-      },
-      {
-        id: 2,
-        name: 'рацион',
-        actions: [
-          {
-            command: 'осмотреть',
-            func: () => {
-              this.consoleService.addNewMessage({
-                source: IMessageSourceEnum.System,
-                value: 'Это завтрак путника - печёная картошка с луком и солью. Должно быть вкусно и, возможно даже, полезно!'
-              })
-            }
-          }
-        ]
-      },
-      {
-        id: 3,
-        name: 'гусли',
-        actions: [
-          {
-            command: 'осмотреть',
-            func: () => {
-              this.consoleService.addNewMessage({
-                source: IMessageSourceEnum.System,
-                value: 'Это... гусли? Зачем они тут?..'
-              })
-            }
-          }
-        ]
-      }
+      this.objectService.getItem(1),
+      this.objectService.getItem(2),
+      this.objectService.getItem(3),
     ],
     actions: [
       {
@@ -75,7 +40,7 @@ export class PlayerService {
           this.consoleService.addNewMessage({
             source: IMessageSourceEnum.System,
             value: `В твоём инвентаре есть следующие предметы: ${getChipsText(inventoryItemNames, 'noun')}`
-          })
+          });
 
           if (this.questService.checkQuestCurrentStep(2, 0)) {
             this.questService.updateQuestStep(2);
@@ -90,12 +55,15 @@ export class PlayerService {
     private mapService: MapService,
     private consoleService: ConsoleService,
     private questService: QuestService,
+    private objectService: ObjectService
   ) {
     this.player.actions[0].func();
   }
 
   tryAction(command: string): void {
     let desiredAction!: IAction | null;
+    let context!: IContext;
+
     const lowerCaseCommand = command.toLowerCase();
     const verb = lowerCaseCommand.split(' ')[0];
     const noun = lowerCaseCommand.split(' ')[1];
@@ -111,6 +79,8 @@ export class PlayerService {
     const desiredLocationObjectAction = desiredLocationObject?.actions.find((action) => action.command === verb);
 
     desiredAction = desiredPlayerAction || desiredInventoryObjectAction || desiredLocationObjectAction || null;
+    // Контекст необходим для взаимодействия между предметами инвентаря и объектами локации без круговой зависимости
+    context = { playerContext: this, locationContext: this.mapService };
 
     this.consoleService.addNewMessage({
       source: IMessageSourceEnum.Player,
@@ -118,12 +88,30 @@ export class PlayerService {
     });
 
     if (desiredAction) {
-      desiredAction.func();
+      desiredAction.func(context);
     } else {
       this.consoleService.addNewMessage({
         source: IMessageSourceEnum.System,
         value: 'Что-то не то...'
       });
     }
+  }
+
+  addItem(id: number): void {
+    const item = this.objectService.getItem(id);
+    this.player.inventory.push(item);
+  }
+
+  removeItem(id: number): void {
+    const itemIndex = this.player.inventory.findIndex((item) => item.id === id);
+    this.player.inventory.splice(itemIndex, 1);
+  }
+
+  checkHp(): number {
+    return this.player.hp;
+  }
+
+  modifyHp(amount: number): void {
+    this.player.hp += amount;
   }
 }

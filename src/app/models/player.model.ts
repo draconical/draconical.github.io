@@ -9,7 +9,7 @@ export interface IAction {
   func: Function;
 }
 
-export interface IPlayer {
+export interface IPlayerModel {
   hp: number;
   inventory: IObject[];
   actions: IAction[];
