@@ -1,10 +1,17 @@
 import { IObject } from "./player.model";
 
+export enum IMoveDirectionsEnum {
+  север = 'north',
+  восток = 'east',
+  юг = 'south',
+  запад = 'west',
+}
+
 export interface IMoveDirections {
-  north: boolean;
-  east: boolean;
-  south: boolean;
-  west: boolean;
+  north: Function | null;
+  east: Function | null;
+  south: Function | null;
+  west: Function | null;
 }
 
 export interface ILocationModel {

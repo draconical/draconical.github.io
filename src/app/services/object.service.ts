@@ -93,7 +93,7 @@ export class ObjectService {
           command: 'разрубить',
           func: (context: IContext) => {
             context.locationContext.removeItem(4);
-            context.locationContext.modifyMoveDirection('west', 'unlock');
+            context.locationContext.modifyMoveDirection('east', 'unlock', 2);
             this.questService.updateQuestStep(2);
           }
         }
@@ -109,7 +109,7 @@ export class ObjectService {
   private examineItemActions(id: number): string {
     const objectCommandNames = this.objects[id - 1].actions.map((action) => action.command);
 
-    return `<br> Доступны следующие действия: <br> ${getChipsText(objectCommandNames, 'verb')}`;
+    return ` Доступны следующие действия: <br> ${getChipsText(objectCommandNames, 'verb')}`;
   }
 
   getItem(id: number): IObject {

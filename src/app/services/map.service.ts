@@ -8,7 +8,9 @@ import { ObjectService } from './object.service';
   providedIn: 'root',
 })
 export class MapService {
-  private currentLocation$: BehaviorSubject<ILocationModel> = new BehaviorSubject<ILocationModel>({ id: 0, isKnown: false, tileSrc: '', description: '', objects: [], moveDirections: { north: false, east: false, south: false, west: false } });
+  private currentLocation$: BehaviorSubject<ILocationModel> = new BehaviorSubject<ILocationModel>({
+    id: 0, isKnown: false, tileSrc: '', description: '', objects: [], moveDirections: { north: null, east: null, south: null, west: null }
+  });
   private locations: ILocationModel[] = [
     {
       id: 1, isKnown: false, tileSrc: '../../../assets/tiles/room1_gate.png',
@@ -16,57 +18,102 @@ export class MapService {
       objects: [
         this.objectService.getItem(4),
       ],
-      moveDirections: { north: false, east: false, south: false, west: false }
+      moveDirections: {
+        north: null,
+        east: null,
+        south: null,
+        west: null
+      }
     },
     {
-      id: 2, isKnown: false, tileSrc: '../../../assets/tiles/tile1_pass_hor.png',
+      id: 2, isKnown: false, tileSrc: '../../../assets/tiles/tile1_pass_right.png',
       description: 'Узкий коридор. Ничего особенного?..',
       objects: [],
-      moveDirections: { north: false, east: false, south: false, west: false }
+      moveDirections: {
+        north: null,
+        east: null,
+        south: null,
+        west: null
+      }
     },
     {
       id: 3, isKnown: false, tileSrc: '../../../assets/tiles/room2_fountain.png',
       description: 'Просторная комната, в центре которой расположен фонтан.',
       objects: [],
-      moveDirections: { north: false, east: false, south: false, west: false }
+      moveDirections: {
+        north: null,
+        east: null,
+        south: null,
+        west: null
+      }
     },
 
     {
-      id: 4, isKnown: false, tileSrc: '../../../assets/tiles/tile1_pass_ver.png',
+      id: 4, isKnown: false, tileSrc: '../../../assets/tiles/tile1_pass_down.png',
       description: 'Скрытый путь, ведущий обратно ко входу.',
       objects: [],
-      moveDirections: { north: false, east: false, south: false, west: false }
+      moveDirections: {
+        north: null,
+        east: null,
+        south: null,
+        west: null
+      }
     },
     {
       id: 5, isKnown: false, tileSrc: '',
       description: '',
       objects: [],
-      moveDirections: { north: false, east: false, south: false, west: false }
+      moveDirections: {
+        north: null,
+        east: null,
+        south: null,
+        west: null
+      }
     },
     {
-      id: 6, isKnown: false, tileSrc: '../../../assets/tiles/tile1_pass_ver.png',
+      id: 6, isKnown: false, tileSrc: '../../../assets/tiles/tile1_pass_up.png',
       description: 'Короткий коридор заканчивается массивной деревянной дверью с металлическими ставнями.',
       objects: [],
-      moveDirections: { north: false, east: false, south: false, west: false }
+      moveDirections: {
+        north: null,
+        east: null,
+        south: null,
+        west: null
+      }
     },
 
     {
       id: 7, isKnown: false, tileSrc: '../../../assets/tiles/room4_chest.png',
       description: 'Красиво украшенная гробница с особо обработанным саркофагом прямо посередине.',
       objects: [],
-      moveDirections: { north: false, east: false, south: false, west: false }
+      moveDirections: {
+        north: null,
+        east: null,
+        south: null,
+        west: null
+      }
     },
     {
-      id: 8, isKnown: false, tileSrc: '../../../assets/tiles/tile1_pass_hor.png',
+      id: 8, isKnown: false, tileSrc: '../../../assets/tiles/tile1_pass_left.png',
       description: 'И снова коридор... И лишь гулкий ветер слышен здесь.',
       objects: [],
-      moveDirections: { north: false, east: false, south: false, west: false }
+      moveDirections: {
+        north: null,
+        east: null,
+        south: null,
+        west: null
+      }
     },
     {
       id: 9, isKnown: false, tileSrc: '../../../assets/tiles/room3_enemy.png',
       description: 'Неболшой зал, увешанный истрёпанными флагами. В уголке виднеется стол, на котором лежит всякая утварь.',
       objects: [],
-      moveDirections: { north: false, east: false, south: false, west: false }
+      moveDirections: {
+        north: null,
+        east: null,
+        south: null,
+        west: null
+      }
     },
   ];
   private locations$: BehaviorSubject<ILocationModel[]> = new BehaviorSubject<ILocationModel[]>(this.locations);
@@ -126,9 +173,15 @@ export class MapService {
     this.updateAllLocations(alteredLocation);
   }
 
-  modifyMoveDirection(direction: 'north' | 'east' | 'south' | 'west', modifyType: 'unlock' | 'lock'): void {
+  modifyMoveDirection(direction: 'north' | 'east' | 'south' | 'west', modType: 'unlock' | 'lock', moveToLocationId: number): void {
     const alteredLocation = this.currentLocation$.getValue();
-    alteredLocation.moveDirections[direction] = modifyType === 'lock' ? false : true;
+    if (modType === 'lock') {
+      alteredLocation.moveDirections[direction] = null;
+    } else {
+      alteredLocation.moveDirections[direction] = () => {
+        this.setCurrentLocation(moveToLocationId)
+      };
+    }
 
     this.updateAllLocations(alteredLocation);
   }

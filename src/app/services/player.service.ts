@@ -48,6 +48,28 @@ export class PlayerService {
           }
         },
       },
+      {
+        command: 'идти на', func: (context: IContext, direction: 'north' | 'east' | 'south' | 'west' | '') => {
+          if (direction === '') {
+            this.consoleService.addNewMessage({
+              source: IMessageSourceEnum.System,
+              value: 'Куда-куда?..'
+            });
+
+            return;
+          }
+
+          const command = context.locationContext.getCurrentLocation().getValue().moveDirections[direction];
+          if (command) {
+            command();
+          } else {
+            this.consoleService.addNewMessage({
+              source: IMessageSourceEnum.System,
+              value: 'Проход закрыт.'
+            });
+          }
+        },
+      },
     ],
   }
 
@@ -57,19 +79,40 @@ export class PlayerService {
     private questService: QuestService,
     private objectService: ObjectService
   ) {
+    // Удалить это, когда всё будет готово
     this.player.actions[0].func();
+  }
+
+  private translateDirection(direction: string): string {
+    switch (direction) {
+      case 'север':
+        return 'north';
+      case 'восток':
+        return 'east';
+      case 'юг':
+        return 'south';
+      case 'запад':
+        return 'west';
+      default:
+        return '';
+    }
   }
 
   tryAction(command: string): void {
     let desiredAction!: IAction | null;
     let context!: IContext;
+    let direction!: string;
 
     const lowerCaseCommand = command.toLowerCase();
     const verb = lowerCaseCommand.split(' ')[0];
     const noun = lowerCaseCommand.split(' ')[1];
 
     // Ищем действие в трёх направлениях - среди действий игрока, предметов инвентаря и объектов локации
-    const desiredPlayerAction = this.player.actions.find(action => action.command === lowerCaseCommand);
+    let desiredPlayerAction = this.player.actions.find(action => action.command === lowerCaseCommand);
+    if (lowerCaseCommand.includes('идти на')) {
+      desiredPlayerAction = this.player.actions.find((action) => action.command === 'идти на');
+      direction = this.translateDirection(lowerCaseCommand.split(' ')[2]);
+    }
 
     const desiredInventoryObject = this.player.inventory.find((item) => item.name === noun);
     const desiredInventoryObjectAction = desiredInventoryObject?.actions.find((action) => action.command === verb);
@@ -88,7 +131,7 @@ export class PlayerService {
     });
 
     if (desiredAction) {
-      desiredAction.func(context);
+      desiredAction.func(context, direction);
     } else {
       this.consoleService.addNewMessage({
         source: IMessageSourceEnum.System,
