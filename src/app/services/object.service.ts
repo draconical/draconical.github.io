@@ -1,3 +1,4 @@
+import { IMoveDirectionItem, IMoveDirectionsEnum } from './../models/location.model';
 import { IMessageSourceEnum } from './../models/message.model';
 import { Injectable } from "@angular/core";
 import { IObject } from '../models/player.model';
@@ -93,7 +94,7 @@ export class ObjectService {
           command: 'разрубить',
           func: (context: IContext) => {
             context.locationContext.removeItem(4);
-            context.locationContext.modifyMoveDirection('east', 'unlock', 2);
+            context.locationContext.modifyMoveDirection(IMoveDirectionsEnum.восток, 'unlock', 2);
             this.questService.setQuestCurrentStep(2, 3);
           }
         }

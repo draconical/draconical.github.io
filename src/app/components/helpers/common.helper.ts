@@ -2,7 +2,7 @@ export function getSemiboldText(str: string): string {
   return `<span class="jost semibold">${str}</span>`;
 }
 
-export function getChipsText(items: string[], type: 'verb' | 'noun'): string {
+export function getChipsText(items: string[], type: 'verb' | 'noun' | 'direction'): string {
   const wrap = (innerStr: string) => {
     return `<div class="chips-wrapper">${innerStr}</div>`;
   };

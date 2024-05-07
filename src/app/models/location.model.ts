@@ -4,14 +4,26 @@ export enum IMoveDirectionsEnum {
   север = 'north',
   восток = 'east',
   юг = 'south',
-  запад = 'west',
+  запад = 'west'
+}
+
+export enum IMoveDirectionsAltEnum {
+  north = 'север',
+  east = 'восток',
+  south = 'юг',
+  west = 'запад'
+}
+
+export interface IMoveDirectionItem {
+  name: IMoveDirectionsAltEnum;
+  func: Function;
 }
 
 export interface IMoveDirections {
-  north: Function | null;
-  east: Function | null;
-  south: Function | null;
-  west: Function | null;
+  north: IMoveDirectionItem | null;
+  east: IMoveDirectionItem | null;
+  south: IMoveDirectionItem | null;
+  west: IMoveDirectionItem | null;
 }
 
 export interface ILocationModel {

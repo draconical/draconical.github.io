@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
 import { Injectable } from "@angular/core";
-import { ILocationModel } from '../models/location.model';
+import { ILocationModel, IMoveDirectionsAltEnum, IMoveDirectionsEnum } from '../models/location.model';
 import { ConsoleService } from './console.service';
 import { ObjectService } from './object.service';
 
@@ -173,14 +173,17 @@ export class MapService {
     this.updateAllLocations(alteredLocation);
   }
 
-  modifyMoveDirection(direction: 'north' | 'east' | 'south' | 'west', modType: 'unlock' | 'lock', moveToLocationId: number): void {
+  modifyMoveDirection(direction: IMoveDirectionsEnum, modType: 'unlock' | 'lock', moveToLocationId: number): void {
     const alteredLocation = this.currentLocation$.getValue();
     if (modType === 'lock') {
       alteredLocation.moveDirections[direction] = null;
     } else {
-      alteredLocation.moveDirections[direction] = () => {
-        this.setCurrentLocation(moveToLocationId)
-      };
+      alteredLocation.moveDirections[direction] = {
+        name: IMoveDirectionsAltEnum[direction],
+        func: () => {
+          this.setCurrentLocation(moveToLocationId)
+        }
+      }
     }
 
     this.updateAllLocations(alteredLocation);

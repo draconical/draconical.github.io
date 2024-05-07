@@ -7,6 +7,7 @@ import { QuestService } from "./quest.service";
 import { IMessageSourceEnum } from "../models/message.model";
 import { getChipsText } from "../components/helpers/common.helper";
 import { ObjectService } from "./object.service";
+import { IMoveDirectionsAltEnum, IMoveDirectionsEnum } from "../models/location.model";
 
 export interface IContext {
   playerContext: PlayerService;
@@ -48,7 +49,7 @@ export class PlayerService {
         },
       },
       {
-        command: 'идти на', func: (context: IContext, direction: 'north' | 'east' | 'south' | 'west' | '') => {
+        command: 'идти на', func: (context: IContext, direction: IMoveDirectionsEnum | '') => {
           if (direction === '') {
             this.consoleService.addNewMessage({
               source: IMessageSourceEnum.System,
@@ -58,7 +59,7 @@ export class PlayerService {
             return;
           }
 
-          const command = context.locationContext.getCurrentLocation().getValue().moveDirections[direction];
+          const command = context.locationContext.getCurrentLocation().getValue().moveDirections[direction]?.func;
           if (command) {
             command();
           } else {
@@ -82,16 +83,13 @@ export class PlayerService {
     this.player.actions[0].func();
   }
 
-  private translateDirection(direction: string): string {
+  private translateDirection(direction: string): IMoveDirectionsEnum | '' {
     switch (direction) {
-      case 'север':
-        return 'north';
-      case 'восток':
-        return 'east';
-      case 'юг':
-        return 'south';
-      case 'запад':
-        return 'west';
+      case IMoveDirectionsAltEnum.north:
+      case IMoveDirectionsAltEnum.east:
+      case IMoveDirectionsAltEnum.south:
+      case IMoveDirectionsAltEnum.west:
+        return IMoveDirectionsEnum[direction];
       default:
         return '';
     }
