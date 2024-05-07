@@ -94,7 +94,7 @@ export class ObjectService {
           func: (context: IContext) => {
             context.locationContext.removeItem(4);
             context.locationContext.modifyMoveDirection('east', 'unlock', 2);
-            this.questService.updateQuestStep(2);
+            this.questService.setQuestCurrentStep(2, 3);
           }
         }
       ]

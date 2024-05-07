@@ -28,7 +28,7 @@ export class QuestService {
         },
         () => {
           // Открываем игру через активацию первого сюжетного квеста
-          this.initQuestByStep(2);
+          this.setQuestCurrentStep(2);
         }
       ]
     },
@@ -62,7 +62,7 @@ export class QuestService {
         () => {
           this.consoleService.addNewMessage({
             source: IMessageSourceEnum.Storyteller,
-            value: `Ты достаёшь меч из ножек и берёшься за дело. Серия ударов, треск ветвей и вот - путь открыт!`
+            value: `Ты достаёшь меч из ножен и берёшься за дело. Серия ударов, треск ветвей и вот - путь открыт!`
           }, 0.3);
 
           this.consoleService.addNewMessage({
@@ -81,22 +81,16 @@ export class QuestService {
     // this.initQuestByStep(0);
   }
 
-  initQuestByStep(questId: number, stepNum?: number): void {
+  setQuestCurrentStep(questId: number, stepNum?: number): void {
     const quest = this.quests[questId - 1];
-    quest.steps[stepNum ? stepNum : quest.currentStep]();
+
+    if (stepNum && quest.currentStep + 1 >= stepNum) return;
+
+    quest.currentStep = stepNum ? stepNum - 1 : 0;
+    quest.steps[quest.currentStep]();
   }
 
   checkQuestCurrentStep(questId: number, stepNum: number): boolean {
-    return this.quests[questId - 1].currentStep === stepNum;
-  }
-
-  updateQuestStep(id: number): void {
-    const quest = this.quests[id - 1];
-    quest.currentStep++;
-
-    // Проверка на финальный шаг (подразумевается, что он будет автоматизированным)
-    if (quest.currentStep === quest.steps.length - 1) {
-      quest.steps[quest.currentStep]();
-    }
+    return this.quests[questId - 1].currentStep === stepNum - 1;
   }
 }

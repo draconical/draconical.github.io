@@ -30,7 +30,7 @@ export class PlayerService {
           if (this.mapService.getCurrentLocation().getValue().id !== 0) return;
           this.consoleService.clearMessages();
           this.mapService.setCurrentLocation(1);
-          this.questService.updateQuestStep(1);
+          this.questService.setQuestCurrentStep(2);
         },
       },
       {
@@ -42,9 +42,8 @@ export class PlayerService {
             value: `В твоём инвентаре есть следующие предметы: ${getChipsText(inventoryItemNames, 'noun')}`
           });
 
-          if (this.questService.checkQuestCurrentStep(2, 0)) {
-            this.questService.updateQuestStep(2);
-            this.questService.initQuestByStep(2);
+          if (this.questService.checkQuestCurrentStep(2, 1)) {
+            this.questService.setQuestCurrentStep(2, 2);
           }
         },
       },

@@ -30,7 +30,7 @@ import { getChipsText } from '../helpers/common.helper';
         <div class="map__description__text jost">
           {{ (this.currentLocation$ | async)?.description }}
         </div>
-        <div class="jost" [innerHTML]="currentLocationObjectNames"></div> 
+        <div class="map__description__objects jost" [innerHTML]="currentLocationObjectNames"></div> 
       </div>
     </div>
   `

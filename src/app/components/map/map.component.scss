@@ -56,14 +56,14 @@
       .north-sign {
         position: absolute;
         top: 5px;
-        left: 49%;
+        left: 190px;
 
         color: white;
       }
 
       .west-sign {
         position: absolute;
-        top: 49%;
+        top: 190px;
         right: 14px;
 
         color: white;
@@ -72,14 +72,14 @@
       .south-sign {
         position: absolute;
         bottom: 7px;
-        left: 49%;
+        left: 190px;
 
         color: white;
       }
 
       .east-sign {
         position: absolute;
-        top: 49%;
+        top: 190px;
         left: 14px;
 
         color: white;
@@ -112,6 +112,10 @@
         flex-grow: 1;
 
         overflow: auto;
+      }
+
+      .map__description__objects {
+        min-height: 53px;
       }
     }
   }
