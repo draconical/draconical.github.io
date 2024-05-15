@@ -1,7 +1,7 @@
-import { IMoveDirectionItem, IMoveDirectionsEnum } from './../models/location.model';
+import { IMoveDirectionsEnum } from './../models/location.model';
 import { IMessageSourceEnum } from './../models/message.model';
 import { Injectable } from "@angular/core";
-import { IObject } from '../models/player.model';
+import { IAction, IObject } from '../models/player.model';
 import { ConsoleService } from './console.service';
 import { IContext } from './player.service';
 import { QuestService } from './quest.service';
@@ -15,31 +15,14 @@ export class ObjectService {
     {
       id: 1,
       name: 'меч',
-      actions: [
-        {
-          command: 'осмотреть',
-          func: () => {
-            this.consoleService.addNewMessage({
-              source: IMessageSourceEnum.System,
-              value: 'Это обыкновенный меч средней длины. На лезвии видны несколько зазубрин.' + this.examineItemActions(1)
-            });
-          }
-        }
-      ]
+      description: 'Это обыкновенный меч средней длины. На лезвии видны несколько зазубрин.',
+      actions: []
     },
     {
       id: 2,
       name: 'рацион',
+      description: 'Это завтрак путника - печёная картошка с луком и солью. Должно быть вкусно и, возможно даже, полезно!',
       actions: [
-        {
-          command: 'осмотреть',
-          func: () => {
-            this.consoleService.addNewMessage({
-              source: IMessageSourceEnum.System,
-              value: 'Это завтрак путника - печёная картошка с луком и солью. Должно быть вкусно и, возможно даже, полезно!' + this.examineItemActions(2)
-            });
-          }
-        },
         {
           command: 'съесть',
           func: (context: IContext) => {
@@ -65,31 +48,14 @@ export class ObjectService {
     {
       id: 3,
       name: 'флейта',
-      actions: [
-        {
-          command: 'осмотреть',
-          func: () => {
-            this.consoleService.addNewMessage({
-              source: IMessageSourceEnum.System,
-              value: 'Это... флейта? Зачем она тут?..' + this.examineItemActions(3)
-            });
-          }
-        }
-      ]
+      description: 'Это... флейта? Зачем она тут?..',
+      actions: []
     },
     {
       id: 4,
       name: 'плющ',
+      description: 'Это плющ, под листьями которого скрывается множество плотных ветвей, перекрывающих вход внутрь.',
       actions: [
-        {
-          command: 'осмотреть',
-          func: () => {
-            this.consoleService.addNewMessage({
-              source: IMessageSourceEnum.System,
-              value: 'Это плющ, под листьями которого скрывается множество плотных ветвей, перекрывающих вход внутрь.' + this.examineItemActions(4)
-            });
-          }
-        },
         {
           command: 'разрубить',
           func: (context: IContext) => {
@@ -107,13 +73,67 @@ export class ObjectService {
     private questService: QuestService
   ) { }
 
-  private examineItemActions(id: number): string {
-    const objectCommandNames = this.objects[id - 1].actions.map((action) => action.command);
+  private examineItemActions(item: IObject): string {
+    const objectCommandNames = item.actions.map((action) => action.command);
 
     return ` Доступны следующие действия: <br> ${getChipsText(objectCommandNames, 'verb')}`;
   }
 
-  getItem(id: number): IObject {
-    return this.objects[id - 1];
+  private attachAdditionalAction(item: IObject, additionalActionType: 'get' | 'drop') {
+    let additionalAction!: IAction;
+
+    if (additionalActionType === 'get') {
+      additionalAction = {
+        command: 'выбросить',
+        func: (context: IContext) => {
+          context.playerContext.removeItem(item.id);
+          context.locationContext.addItem(item.id);
+
+          this.consoleService.addNewMessage({
+            source: IMessageSourceEnum.System,
+            value: `Ты бросаешь ${item.name} на пол. Но зачем?..`
+          });
+        }
+      }
+    } else {
+      additionalAction = {
+        command: 'взять',
+        func: (context: IContext) => {
+          context.locationContext.removeItem(item.id);
+          context.playerContext.addItem(item.id);
+
+          this.consoleService.addNewMessage({
+            source: IMessageSourceEnum.System,
+            value: `Ты подбираешь ${item.name}. Пригодится!`
+          });
+        }
+      }
+    }
+
+    item.actions.push(additionalAction);
+  }
+
+  private attachExamineAction(item: IObject): void {
+    // Добавляем функцию осмотра с учётом (возможных) дополнительных функций взятия/броска 
+    item.actions.push({
+      command: 'осмотреть',
+      func: () => {
+        this.consoleService.addNewMessage({
+          source: IMessageSourceEnum.System,
+          value: item.description + this.examineItemActions(item)
+        });
+      }
+    })
+  }
+
+  getItem(id: number, additionalActionType?: 'get' | 'drop'): IObject {
+    const item: IObject = { ...this.objects[id - 1] };
+    item.actions = [...this.objects[id - 1].actions];
+
+    if (additionalActionType) this.attachAdditionalAction(item, additionalActionType);
+    this.attachExamineAction(item);
+    item.actions.sort((curr, next) => curr.command.localeCompare(next.command));
+
+    return item;
   }
 }

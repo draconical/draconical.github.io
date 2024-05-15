@@ -7,7 +7,7 @@ export function getChipsText(items: string[], type: 'verb' | 'noun' | 'direction
     return `<div class="chips-wrapper">${innerStr}</div>`;
   };
 
-  const chipsString = items.map((str) => {
+  const chipsString = items.sort((curr, next) => curr.localeCompare(next)).map((str) => {
     return `<span class="chip ${type}">${str}</span>`
   }).join('');
 

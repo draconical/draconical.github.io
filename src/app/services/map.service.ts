@@ -31,9 +31,15 @@ export class MapService {
       objects: [],
       moveDirections: {
         north: null,
-        east: null,
+        east: {
+          name: IMoveDirectionsAltEnum.east,
+          func: () => { this.setCurrentLocation(3) }
+        },
         south: null,
-        west: null
+        west: {
+          name: IMoveDirectionsAltEnum.west,
+          func: () => { this.setCurrentLocation(1) }
+        }
       }
     },
     {
@@ -43,8 +49,14 @@ export class MapService {
       moveDirections: {
         north: null,
         east: null,
-        south: null,
-        west: null
+        south: {
+          name: IMoveDirectionsAltEnum.south,
+          func: () => { this.setCurrentLocation(6) }
+        },
+        west: {
+          name: IMoveDirectionsAltEnum.west,
+          func: () => { this.setCurrentLocation(2) }
+        }
       }
     },
 
@@ -71,11 +83,14 @@ export class MapService {
       }
     },
     {
-      id: 6, isKnown: false, tileSrc: '../../../assets/tiles/tile1_pass_up.png',
+      id: 6, isKnown: false, tileSrc: '../../../assets/tiles/tile1_pass_down.png',
       description: 'Короткий коридор заканчивается массивной деревянной дверью с металлическими ставнями.',
       objects: [],
       moveDirections: {
-        north: null,
+        north: {
+          name: IMoveDirectionsAltEnum.north,
+          func: () => { this.setCurrentLocation(3) }
+        },
         east: null,
         south: null,
         west: null
@@ -156,7 +171,7 @@ export class MapService {
   }
 
   addItem(id: number): void {
-    const item = this.objectService.getItem(id);
+    const item = this.objectService.getItem(id, 'drop');
 
     const alteredLocation = this.currentLocation$.getValue();
     alteredLocation.objects.push(item);

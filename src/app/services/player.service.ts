@@ -21,9 +21,9 @@ export class PlayerService {
   private player: IPlayerModel = {
     hp: 4,
     inventory: [
-      this.objectService.getItem(1),
-      this.objectService.getItem(2),
-      this.objectService.getItem(3),
+      this.objectService.getItem(1, 'get'),
+      this.objectService.getItem(2, 'get'),
+      this.objectService.getItem(3, 'get'),
     ],
     actions: [
       {
@@ -32,6 +32,8 @@ export class PlayerService {
           this.consoleService.clearMessages();
           this.mapService.setCurrentLocation(1);
           this.questService.setQuestCurrentStep(2);
+
+          this.player.actions.splice(0, 1);
         },
       },
       {
@@ -138,7 +140,7 @@ export class PlayerService {
   }
 
   addItem(id: number): void {
-    const item = this.objectService.getItem(id);
+    const item = this.objectService.getItem(id, 'get');
     this.player.inventory.push(item);
   }
 
