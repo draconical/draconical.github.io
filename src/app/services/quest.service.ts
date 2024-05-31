@@ -72,6 +72,18 @@ export class QuestService {
         },
       ]
     },
+    {
+      id: 3, currentStep: 0, steps: [
+        () => {
+          this.consoleService.addNewMessage({
+            source: IMessageSourceEnum.System,
+            value: `
+                    При рассмотрении фонтана ты замечаешь 
+                   `,
+          }, 0.3);
+        },
+      ]
+    },
   ];
 
   constructor(

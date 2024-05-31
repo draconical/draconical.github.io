@@ -23,7 +23,6 @@ export class PlayerService {
     inventory: [
       this.objectService.getItem(1, 'get'),
       this.objectService.getItem(2, 'get'),
-      this.objectService.getItem(3, 'get'),
     ],
     actions: [
       {
@@ -97,6 +96,10 @@ export class PlayerService {
     }
   }
 
+  checkItemExits(id: number): boolean {
+    return !!this.player.inventory.find((item) => item.id === id);
+  }
+
   tryAction(command: string): void {
     let desiredAction!: IAction | null;
     let context!: IContext;
@@ -139,8 +142,8 @@ export class PlayerService {
     }
   }
 
-  addItem(id: number): void {
-    const item = this.objectService.getItem(id, 'get');
+  addItem(id: number, dropActionNeeded: boolean = true): void {
+    const item = this.objectService.getItem(id, dropActionNeeded ? 'get' : undefined);
     this.player.inventory.push(item);
   }
 

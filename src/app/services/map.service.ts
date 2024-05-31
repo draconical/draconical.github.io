@@ -45,7 +45,9 @@ export class MapService {
     {
       id: 3, isKnown: false, tileSrc: '../../../assets/tiles/room2_fountain.png',
       description: 'Просторная комната, в центре которой расположен фонтан.',
-      objects: [],
+      objects: [
+        this.objectService.getItem(5),
+      ],
       moveDirections: {
         north: null,
         east: null,
@@ -170,8 +172,8 @@ export class MapService {
     this.currentLocation$.next(this.locations[id - 1]);
   }
 
-  addItem(id: number): void {
-    const item = this.objectService.getItem(id, 'drop');
+  addItem(id: number, dropActionNeeded: boolean = true): void {
+    const item = this.objectService.getItem(id, dropActionNeeded ? 'drop' : undefined);
 
     const alteredLocation = this.currentLocation$.getValue();
     alteredLocation.objects.push(item);

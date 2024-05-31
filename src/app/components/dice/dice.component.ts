@@ -12,8 +12,9 @@ import { IAdversariesEnum } from 'src/app/services/clash.service';
   imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="button-panel">
-        <button (click)="generateDices()">Сделать бросок</button>
+    <div *ngIf="adversaryToken !== 'opponent'" class="button-panel">
+        <button *ngIf="!result" (click)="generateDices()">Сделать бросок</button>
+        <button *ngIf="result" (click)="endClash()">Завершить бросок</button>
         <button *ngIf="currentReroll.length > 0 && !rerollAlreadyDone" (click)="rerollDices()">Перебросить выбранные кости</button>
     </div>
     <div class="dice-set" *ngIf="dices && dices.length > 0">
@@ -42,42 +43,8 @@ export class DiceComponent {
 
   constructor(private clashService: ClashService) { }
 
-  ngOnInit(): void { }
-
-  checkDiceForReroll(dice: IDiceModel): void {
-    if (dice.checkedForReroll === false) {
-      if (this.currentReroll.length >= this.rerollLimit || this.rerollAlreadyDone) return;
-    }
-
-    dice.checkedForReroll = !dice.checkedForReroll;
-    this._calculateCurrentReroll();
-  }
-
-  generateDices(): void {
-    const newSet: IDiceModel[] = [];
-
-    for (let i = 1; i <= 5; i++) {
-      newSet.push(this._createDiceInstance());
-    }
-
-    this.dices = newSet;
-    this.currentReroll = [];
-    this.rerollAlreadyDone = false;
-
-    this._sortDices();
-
-    this._calcCombination();
-  }
-
-  rerollDices(): void {
-    this.currentReroll.forEach((diceIndex) => {
-      this.dices[diceIndex] = this._createDiceInstance();
-    });
-
-    this.currentReroll = [];
-    this.rerollAlreadyDone = true;
-
-    this._calcCombination();
+  ngOnInit(): void {
+    if (this.adversaryToken === IAdversariesEnum.opponent) this.generateDices();
   }
 
   private _randomInt(min: number, max: number) {
@@ -251,5 +218,47 @@ export class DiceComponent {
     checkCombinations();
     setResult();
     this._setClashResult(combinations);
+  }
+
+  checkDiceForReroll(dice: IDiceModel): void {
+    if (this.adversaryToken === IAdversariesEnum.opponent) return;
+
+    if (dice.checkedForReroll === false) {
+      if (this.currentReroll.length >= this.rerollLimit || this.rerollAlreadyDone) return;
+    }
+
+    dice.checkedForReroll = !dice.checkedForReroll;
+    this._calculateCurrentReroll();
+  }
+
+  generateDices(): void {
+    const newSet: IDiceModel[] = [];
+
+    for (let i = 1; i <= 5; i++) {
+      newSet.push(this._createDiceInstance());
+    }
+
+    this.dices = newSet;
+    this.currentReroll = [];
+    this.rerollAlreadyDone = false;
+
+    this._sortDices();
+
+    this._calcCombination();
+  }
+
+  rerollDices(): void {
+    this.currentReroll.forEach((diceIndex) => {
+      this.dices[diceIndex] = this._createDiceInstance();
+    });
+
+    this.currentReroll = [];
+    this.rerollAlreadyDone = true;
+
+    this._calcCombination();
+  }
+
+  endClash(): void {
+    this.clashService.endClash();
   }
 }

@@ -1,38 +1,44 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Subject, combineLatest, takeUntil } from "rxjs";
+import { BehaviorSubject, combineLatest } from "rxjs";
+import { ConsoleService } from "./console.service";
+import { IMessageSourceEnum } from "../models/message.model";
 
 export enum IAdversariesEnum {
   player = 'player',
   opponent = 'opponent',
 }
 
+export interface IClashOutcomes {
+  win: Function;
+  lose: Function;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class ClashService {
+  private clashInProcess: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   private playerRoll$: BehaviorSubject<number | null> = new BehaviorSubject<number | null>(null);
   private opponentRoll$: BehaviorSubject<number | null> = new BehaviorSubject<number | null>(null);
 
+  private clashOutcomes: IClashOutcomes | null = null;
+
   private winner$: BehaviorSubject<IAdversariesEnum | null> = new BehaviorSubject<IAdversariesEnum | null>(null);
 
-  private destroy$: Subject<boolean> = new Subject();
-
-  constructor() {
+  constructor(private consoleService: ConsoleService) {
     console.log('Сервис поединков запущен!');
 
     combineLatest([this.playerRoll$, this.opponentRoll$])
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(([pRoll, oRoll]) => {
-      if (!pRoll || !oRoll) return;
+      .subscribe(([pRoll, oRoll]) => {
+        if (!pRoll || !oRoll) return;
 
-      if (pRoll > oRoll) {
-        console.warn('Победа игрока!');
-      } else if (pRoll < oRoll) {
-        console.warn('Победа оппонента!');
-      } else {
-        console.warn('Ничья!');
-      }
-    })
+        if (pRoll >= oRoll) {
+          this.winner$.next(IAdversariesEnum.player);
+        } else if (pRoll < oRoll) {
+          this.winner$.next(IAdversariesEnum.opponent);
+        }
+      });
   }
 
   setRollValue(adversaryToken: IAdversariesEnum, rollResult: number | null): void {
@@ -45,5 +51,36 @@ export class ClashService {
 
   getWinner(): BehaviorSubject<IAdversariesEnum | null> {
     return this.winner$;
+  }
+
+  getInProcessStatus(): BehaviorSubject<boolean> {
+    return this.clashInProcess;
+  }
+
+  startClash(): void {
+    this.clashInProcess.next(true);
+  }
+
+  setClashOutcomes(winOutcome: Function, loseOutcome: Function): void {
+    this.clashOutcomes = {
+      win: winOutcome,
+      lose: loseOutcome
+    };
+  }
+
+  endClash(): void {
+    this.clashInProcess.next(false);
+
+    this.winner$.getValue() === IAdversariesEnum.player
+      ? this.clashOutcomes?.win() : this.clashOutcomes?.lose();
+
+    this.consoleService.addNewMessage({
+      source: IMessageSourceEnum.System,
+      value: `Ты ${this.winner$.getValue() === IAdversariesEnum.player ? ' проходишь' : ' проваливаешь'} проверку.`
+    });
+
+    this.opponentRoll$.next(null);
+    this.playerRoll$.next(null);
+    this.clashOutcomes = null;
   }
 }

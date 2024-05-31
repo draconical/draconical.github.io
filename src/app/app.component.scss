@@ -2,6 +2,8 @@
 
 :host {
   .app {
+    position: relative;
+
     width: 100%;
     min-width: 1280px;
     height: 100%;
@@ -24,6 +26,42 @@
       flex-direction: row;
 
       gap: $container-padding;
+    }
+
+    >.checks {
+      position: absolute;
+      z-index: 1;
+
+      top: -$container-padding;
+
+      width: 100%;
+      height: calc(100% + $container-padding);
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      
+      animation: fadeOut ease-out 0.75s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 100%;
+    }
+
+    to {
+      background-color: white;
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
   }
 }

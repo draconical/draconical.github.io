@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IMessageModel, IMessageSourceEnum } from 'src/app/models/message.model';
 import { ConsoleService } from 'src/app/services/console.service';
@@ -29,6 +29,8 @@ import { PlayerService } from 'src/app/services/player.service';
   `
 })
 export class ConsoleComponent {
+  @Input() clashInProcess!: BehaviorSubject<boolean>;
+
   messages$!: BehaviorSubject<IMessageModel[]>;
   consoleString: string = '';
 
@@ -45,7 +47,7 @@ export class ConsoleComponent {
   }
 
   onSubmit(): void {
-    if (!this.consoleString) return;
+    if (!this.consoleString || this.clashInProcess.getValue()) return;
 
     this.playerService.tryAction(this.consoleString);
     this.consoleString = '';

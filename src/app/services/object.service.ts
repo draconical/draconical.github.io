@@ -49,7 +49,33 @@ export class ObjectService {
       id: 3,
       name: 'флейта',
       description: 'Это... флейта? Зачем она тут?..',
-      actions: []
+      actions: [
+        {
+          command: 'взять',
+          func: (context: IContext) => {
+            this.objects[2].actions.splice(0, 1);
+
+            context.locationContext.removeItem(3);
+            context.playerContext.addItem(3);
+  
+            this.consoleService.addNewMessage({
+              source: IMessageSourceEnum.System,
+              value: `Ты подбираешь флейта. Пригодится!`
+            });
+
+            this.objects[4].description = 'Это старый каменный фонтан. На пьедистале расположена статуя молодого человека, который... когда-то играл на флейте.'
+
+            context.locationContext.removeItem(5);
+            context.locationContext.addItem(5, false);
+          }
+        },
+        {
+          command: 'использовать',
+          func: (context: IContext) => {
+            // Тут должен быть функционал для комнаты со змеями
+          }
+        }
+      ]
     },
     {
       id: 4,
@@ -59,9 +85,39 @@ export class ObjectService {
         {
           command: 'разрубить',
           func: (context: IContext) => {
-            context.locationContext.removeItem(4);
-            context.locationContext.modifyMoveDirection(IMoveDirectionsEnum.восток, 'unlock', 2);
-            this.questService.setQuestCurrentStep(2, 3);
+            if (context.playerContext.checkItemExits(1)) {
+              context.locationContext.removeItem(4);
+              context.locationContext.modifyMoveDirection(IMoveDirectionsEnum.восток, 'unlock', 2);
+              this.questService.setQuestCurrentStep(2, 3);
+            } else {
+              this.consoleService.addNewMessage({
+                source: IMessageSourceEnum.System,
+                value: 'Для это нужен подходящий инструмент... Как насчёт меча?'
+              })
+            }
+          }
+        }
+      ]
+    },
+    {
+      id: 5,
+      name: 'фонтан',
+      description: 'Это старый каменный фонтан. На пьедистале расположена статуя молодого человека, который играет на флейте.',
+      actions: [
+        {
+          command: 'изучить',
+          func: (context: IContext) => {
+            context.locationContext.addItem(3, false);
+  
+            this.consoleService.addNewMessage({
+              source: IMessageSourceEnum.System,
+              value: `Похоже, что флейта не закреплена...`
+            });
+
+            this.objects[4].actions.splice(0, 1);
+
+            context.locationContext.removeItem(5);
+            context.locationContext.addItem(5, false);
           }
         }
       ]
