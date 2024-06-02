@@ -16,7 +16,9 @@ export class ObjectService {
       id: 1,
       name: 'меч',
       description: 'Это обыкновенный меч средней длины. На лезвии видны несколько зазубрин.',
-      actions: []
+      actions: [],
+      whenTaken: [],
+      whenDropped: []
     },
     {
       id: 2,
@@ -43,11 +45,14 @@ export class ObjectService {
             }
           }
         }
-      ]
+      ],
+      whenTaken: [],
+      whenDropped: []
     },
     {
       id: 3,
       name: 'флейта',
+      altName: 'флейту',
       description: 'Это... флейта? Зачем она тут?..',
       actions: [
         {
@@ -57,10 +62,10 @@ export class ObjectService {
 
             context.locationContext.removeItem(3);
             context.playerContext.addItem(3);
-  
+
             this.consoleService.addNewMessage({
               source: IMessageSourceEnum.System,
-              value: `Ты подбираешь флейта. Пригодится!`
+              value: `Ты подбираешь флейту. Пригодится!`
             });
 
             this.objects[4].description = 'Это старый каменный фонтан. На пьедистале расположена статуя молодого человека, который... когда-то играл на флейте.'
@@ -69,13 +74,19 @@ export class ObjectService {
             context.locationContext.addItem(5, false);
           }
         },
+      ],
+      whenTaken: [
         {
           command: 'использовать',
           func: (context: IContext) => {
-            // Тут должен быть функционал для комнаты со змеями
+            this.consoleService.addNewMessage({
+              source: IMessageSourceEnum.System,
+              value: `*фьють-фьють-фьють* А неплохо!`
+            });
           }
         }
-      ]
+      ],
+      whenDropped: []
     },
     {
       id: 4,
@@ -97,7 +108,9 @@ export class ObjectService {
             }
           }
         }
-      ]
+      ],
+      whenTaken: [],
+      whenDropped: []
     },
     {
       id: 5,
@@ -108,7 +121,7 @@ export class ObjectService {
           command: 'изучить',
           func: (context: IContext) => {
             context.locationContext.addItem(3, false);
-  
+
             this.consoleService.addNewMessage({
               source: IMessageSourceEnum.System,
               value: `Похоже, что флейта не закреплена...`
@@ -120,7 +133,9 @@ export class ObjectService {
             context.locationContext.addItem(5, false);
           }
         }
-      ]
+      ],
+      whenTaken: [],
+      whenDropped: []
     },
   ]
 
@@ -135,10 +150,10 @@ export class ObjectService {
     return ` Доступны следующие действия: <br> ${getChipsText(objectCommandNames, 'verb')}`;
   }
 
-  private attachAdditionalAction(item: IObject, additionalActionType: 'get' | 'drop') {
+  private attachBaseActions(item: IObject, baseActionsType: 'get' | 'drop') {
     let additionalAction!: IAction;
 
-    if (additionalActionType === 'get') {
+    if (baseActionsType === 'get') {
       additionalAction = {
         command: 'выбросить',
         func: (context: IContext) => {
@@ -147,10 +162,12 @@ export class ObjectService {
 
           this.consoleService.addNewMessage({
             source: IMessageSourceEnum.System,
-            value: `Ты бросаешь ${item.name} на пол. Но зачем?..`
+            value: `Ты бросаешь ${item.altName ?? item.name} на пол. Но зачем?..`
           });
         }
       }
+
+      item.actions = item.actions.concat(item.whenTaken);
     } else {
       additionalAction = {
         command: 'взять',
@@ -160,10 +177,12 @@ export class ObjectService {
 
           this.consoleService.addNewMessage({
             source: IMessageSourceEnum.System,
-            value: `Ты подбираешь ${item.name}. Пригодится!`
+            value: `Ты подбираешь ${item.altName ?? item.name}. Пригодится!`
           });
         }
       }
+
+      item.actions = item.actions.concat(item.whenDropped);
     }
 
     item.actions.push(additionalAction);
@@ -182,11 +201,11 @@ export class ObjectService {
     })
   }
 
-  getItem(id: number, additionalActionType?: 'get' | 'drop'): IObject {
+  getItem(id: number, baseActionsType?: 'get' | 'drop'): IObject {
     const item: IObject = { ...this.objects[id - 1] };
     item.actions = [...this.objects[id - 1].actions];
 
-    if (additionalActionType) this.attachAdditionalAction(item, additionalActionType);
+    if (baseActionsType) this.attachBaseActions(item, baseActionsType);
     this.attachExamineAction(item);
     item.actions.sort((curr, next) => curr.command.localeCompare(next.command));
 

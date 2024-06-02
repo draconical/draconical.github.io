@@ -116,11 +116,11 @@ export class PlayerService {
       direction = this.translateDirection(lowerCaseCommand.split(' ')[2]);
     }
 
-    const desiredInventoryObject = this.player.inventory.find((item) => item.name === noun);
+    const desiredInventoryObject = this.player.inventory.find((item) => item.name === noun || (item.altName && item.altName === noun));
     const desiredInventoryObjectAction = desiredInventoryObject?.actions.find((action) => action.command === verb);
 
     const currentLocationObjects = this.mapService.getCurrentLocation().getValue().objects;
-    const desiredLocationObject = currentLocationObjects.find((item) => item.name === noun);
+    const desiredLocationObject = currentLocationObjects.find((item) => item.name === noun || (item.altName && item.altName === noun));
     const desiredLocationObjectAction = desiredLocationObject?.actions.find((action) => action.command === verb);
 
     desiredAction = desiredPlayerAction || desiredInventoryObjectAction || desiredLocationObjectAction || null;
