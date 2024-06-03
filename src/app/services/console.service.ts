@@ -7,6 +7,7 @@ import { BehaviorSubject } from "rxjs";
 })
 export class ConsoleService {
   private messages$: BehaviorSubject<IMessageModel[]> = new BehaviorSubject<IMessageModel[]>([]);
+  private updateLogScrollbar$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
   constructor() { }
 
@@ -15,6 +16,8 @@ export class ConsoleService {
       const temp = this.messages$.getValue();
 
       this.messages$.next([...temp, newMessage]);
+
+      this.updateLogScrollbar$.next(true);
     }, timeout ? timeout * 1000 : 0);
   }
 
@@ -26,5 +29,9 @@ export class ConsoleService {
 
   getMessages(): BehaviorSubject<IMessageModel[]> {
     return this.messages$;
+  }
+
+  getUpdateLogScrollbar(): BehaviorSubject<boolean> {
+    return this.updateLogScrollbar$;
   }
 }

@@ -16,7 +16,7 @@ export class MapService {
       id: 1, isKnown: false, tileSrc: '../../../assets/tiles/room1_gate.png',
       description: 'Каменная арка, обвитая плющём; сразу за ней виднеется лестница, ведущая вниз - в склеп.',
       objects: [
-        this.objectService.getItem(4),
+        this.objectService.getObject(4),
       ],
       moveDirections: {
         north: null,
@@ -46,7 +46,7 @@ export class MapService {
       id: 3, isKnown: false, tileSrc: '../../../assets/tiles/room2_fountain.png',
       description: 'Просторная комната, в центре которой расположен фонтан.',
       objects: [
-        this.objectService.getItem(5),
+        this.objectService.getObject(5),
       ],
       moveDirections: {
         north: null,
@@ -87,14 +87,19 @@ export class MapService {
     {
       id: 6, isKnown: false, tileSrc: '../../../assets/tiles/tile1_pass_down.png',
       description: 'Короткий коридор заканчивается массивной деревянной дверью с металлическими ставнями.',
-      objects: [],
+      objects: [
+        this.objectService.getObject(6),
+      ],
       moveDirections: {
         north: {
           name: IMoveDirectionsAltEnum.north,
           func: () => { this.setCurrentLocation(3) }
         },
         east: null,
-        south: null,
+        south: {
+          name: IMoveDirectionsAltEnum.south,
+          func: () => { this.setCurrentLocation(9) }
+        },
         west: null
       }
     },
@@ -124,7 +129,9 @@ export class MapService {
     {
       id: 9, isKnown: false, tileSrc: '../../../assets/tiles/room3_enemy.png',
       description: 'Неболшой зал, увешанный истрёпанными флагами. В уголке виднеется стол, на котором лежит всякая утварь.',
-      objects: [],
+      objects: [
+        this.objectService.getObject(7),
+      ],
       moveDirections: {
         north: null,
         east: null,
@@ -173,7 +180,7 @@ export class MapService {
   }
 
   addItem(id: number, dropActionNeeded: boolean = true): void {
-    const item = this.objectService.getItem(id, dropActionNeeded ? 'drop' : undefined);
+    const item = this.objectService.getObject(id, dropActionNeeded ? 'drop' : undefined);
 
     const alteredLocation = this.currentLocation$.getValue();
     alteredLocation.objects.push(item);
@@ -181,7 +188,7 @@ export class MapService {
     this.updateAllLocations(alteredLocation);
   }
 
-  removeItem(id: number): void {
+  removeObject(id: number): void {
     const itemIndex = this.currentLocation$.getValue().objects.findIndex((item) => item.id === id);
 
     const alteredLocation = this.currentLocation$.getValue();
@@ -204,5 +211,21 @@ export class MapService {
     }
 
     this.updateAllLocations(alteredLocation);
+  }
+
+  checkObjectHp(objectId: number): number {
+    const alteredLocation = this.currentLocation$.getValue();
+    const object = alteredLocation.objects.find((object) => object.id === objectId);
+
+    return object?.hp ?? 0;
+  }
+
+  modifyObjectHp(enemyId: number, amount: number): void {
+    const alteredLocation = this.currentLocation$.getValue();
+    const object = alteredLocation.objects.find((object) => object.id === enemyId);
+
+    if (object?.hp !== undefined) {
+      object.hp += amount;
+    }
   }
 }

@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IMessageModel, IMessageSourceEnum } from 'src/app/models/message.model';
 import { ConsoleService } from 'src/app/services/console.service';
@@ -22,6 +22,7 @@ import { PlayerService } from 'src/app/services/player.service';
             <div class="message__source jost semibold">[{{translateSource(message.source)}}]:</div>
             <div class="message__content jost" [ngClass]="{'italic': message.source === messageSourceTypes.Player}" [innerHTML]="message.value"></div>
           </div>
+          <div #blankMessageRef class="message__blank-ref"></div>
         </div>
         <input class="console__input jost" placeholder="Твои действия?" [(ngModel)]="consoleString" (keyup.enter)="onSubmit()">
       </div>
@@ -30,6 +31,8 @@ import { PlayerService } from 'src/app/services/player.service';
 })
 export class ConsoleComponent {
   @Input() clashInProcess!: BehaviorSubject<boolean>;
+
+  @ViewChild('blankMessageRef', { static: false }) blankMessageRef!: ElementRef<HTMLElement>;
 
   messages$!: BehaviorSubject<IMessageModel[]>;
   consoleString: string = '';
@@ -44,10 +47,29 @@ export class ConsoleComponent {
 
   ngOnInit(): void {
     this.messages$ = this.consoleService.getMessages();
+
+    this.consoleService.getUpdateLogScrollbar().subscribe(() => {
+      this.updateLogScrollbar();
+    })
+  }
+
+  private updateLogScrollbar(): void {
+    setTimeout(() => {
+      const blankMessageRef = this.blankMessageRef.nativeElement;
+      blankMessageRef.scrollIntoView({ behavior: 'smooth' });
+    }, 300);
   }
 
   onSubmit(): void {
     if (!this.consoleString || this.clashInProcess.getValue()) return;
+
+    if (this.playerService.checkHp() === 0) {
+      this.consoleService.addNewMessage({
+        source: IMessageSourceEnum.System,
+        value: 'Мертвецы не рассказывают сказки. Но, если CTRL + R, то можно.'
+      })
+      return;
+    }
 
     this.playerService.tryAction(this.consoleString);
     this.consoleString = '';

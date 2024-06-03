@@ -2,6 +2,7 @@ export interface IObject {
   id: number;
   name: string;
   altName?: string;
+  hp?: number;
   description: string;
   actions: IAction[];
   whenTaken: IAction[];
