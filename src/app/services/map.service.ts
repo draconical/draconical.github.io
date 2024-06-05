@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { ILocationModel, IMoveDirectionsAltEnum, IMoveDirectionsEnum } from '../models/location.model';
 import { ConsoleService } from './console.service';
 import { ObjectService } from './object.service';
+import { IMessageSourceEnum } from '../models/message.model';
 
 @Injectable({
   providedIn: 'root',
@@ -63,8 +64,8 @@ export class MapService {
     },
 
     {
-      id: 4, isKnown: false, tileSrc: '../../../assets/tiles/tile1_pass_down.png',
-      description: 'Скрытый путь, ведущий обратно ко входу.',
+      id: 4, isKnown: false, tileSrc: '',
+      description: '',
       objects: [],
       moveDirections: {
         north: null,
@@ -107,7 +108,9 @@ export class MapService {
     {
       id: 7, isKnown: false, tileSrc: '../../../assets/tiles/room4_chest.png',
       description: 'Красиво украшенная гробница с особо обработанным саркофагом прямо посередине.',
-      objects: [],
+      objects: [
+        this.objectService.getObject(8),
+      ],
       moveDirections: {
         north: null,
         east: null,
@@ -123,7 +126,10 @@ export class MapService {
         north: null,
         east: null,
         south: null,
-        west: null
+        west: {
+          name: IMoveDirectionsAltEnum.west,
+          func: () => { this.setCurrentLocation(7) }
+        }
       }
     },
     {
@@ -179,10 +185,10 @@ export class MapService {
     this.currentLocation$.next(this.locations[id - 1]);
   }
 
-  addItem(id: number, dropActionNeeded: boolean = true): void {
+  addItem(id: number, dropActionNeeded: boolean = true, locationId?: number): void {
     const item = this.objectService.getObject(id, dropActionNeeded ? 'drop' : undefined);
 
-    const alteredLocation = this.currentLocation$.getValue();
+    const alteredLocation = locationId !== undefined ? this.locations[locationId - 1] : this.currentLocation$.getValue();
     alteredLocation.objects.push(item);
 
     this.updateAllLocations(alteredLocation);
@@ -197,8 +203,8 @@ export class MapService {
     this.updateAllLocations(alteredLocation);
   }
 
-  modifyMoveDirection(direction: IMoveDirectionsEnum, modType: 'unlock' | 'lock', moveToLocationId: number): void {
-    const alteredLocation = this.currentLocation$.getValue();
+  modifyMoveDirection(direction: IMoveDirectionsEnum, modType: 'unlock' | 'lock', moveToLocationId: number, locationId?: number): void {
+    const alteredLocation = locationId !== undefined ? this.locations[locationId - 1] : this.currentLocation$.getValue();
     if (modType === 'lock') {
       alteredLocation.moveDirections[direction] = null;
     } else {

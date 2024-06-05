@@ -6,7 +6,7 @@ import { IAction, IObject } from '../models/player.model';
 import { ConsoleService } from './console.service';
 import { IContext } from './player.service';
 import { QuestService } from './quest.service';
-import { getChipsText } from '../components/helpers/common.helper';
+import { getChipsText, getSemiboldText } from '../components/helpers/common.helper';
 
 @Injectable({
   providedIn: 'root',
@@ -84,6 +84,16 @@ export class ObjectService {
               source: IMessageSourceEnum.System,
               value: `*фьють-фьють-фьють* А неплохо!`
             });
+
+            if (context.locationContext.checkObjectHp(9) > 0) {
+              this.consoleService.addNewMessage({
+                source: IMessageSourceEnum.Storyteller,
+                value: `Удивительным образом, под звуки флейты змеи засыпают! Похоже, что сражаться с ними уже и не придётся.`
+              }, 0.3)
+
+              context.locationContext.removeObject(9);
+              context.locationContext.addItem(10, false);
+            }
           }
         }
       ],
@@ -141,7 +151,7 @@ export class ObjectService {
     {
       id: 6,
       name: 'картины',
-      description: 'Череда из трёх картин. На первой изображена длинная лестница, на второй - поле брани, а на третьей - человек, заклинающий змею с помощью музыкального инструмента.',
+      description: 'Это череда из трёх картин. На первой изображена длинная лестница, на второй - поле брани, а на третьей - человек, заклинающий змею с помощью музыкального инструмента.',
       actions: [
         {
           command: 'порвать',
@@ -165,7 +175,7 @@ export class ObjectService {
       name: 'драугр',
       altName: 'драугра',
       hp: 3,
-      description: 'Человекоподобное создание, похожее на ожившего трупа. Оно бродит из стороны в сторону, прекрывая проход дальше.',
+      description: 'Это человекоподобное создание, похожее на ожившего трупа. Оно бродит из стороны в сторону, прекрывая проход дальше.',
       actions: [
         {
           command: 'сразить',
@@ -215,6 +225,118 @@ export class ObjectService {
             }
           }
         }
+      ],
+      whenTaken: [],
+      whenDropped: []
+    },
+    {
+      id: 8,
+      name: 'сундук',
+      description: 'Это большой укреплённый сундук, который обещает нечто интересное внтури.',
+      actions: [
+        {
+          command: 'открыть',
+          func: (context: IContext) => {
+            context.locationContext.addItem(9, false);
+
+            this.consoleService.addNewMessage({
+              source: IMessageSourceEnum.Storyteller,
+              value: `Со скрипом сундук открывается. На дне его видны золотые монеты, однако поверх них ползают змеи... Похоже, придётся что-то придумать.`
+            }, 0.3);
+
+            this.objects[7].actions.splice(0, 1);
+
+            context.locationContext.removeObject(8);
+            context.locationContext.addItem(8, false);
+          }
+        }
+      ],
+      whenTaken: [],
+      whenDropped: []
+    },
+    {
+      id: 9,
+      name: 'змеи',
+      altName: 'змей',
+      hp: 3,
+      description: 'Это клубок из трёх змей. Они не слишком агрессивны, если не лезть к ним...',
+      actions: [
+        {
+          command: 'сразить',
+          func: (context: IContext) => {
+            if (context.playerContext.checkItemExits(1)) {
+              this.clashService.startClash();
+              this.clashService.setClashOutcomes(
+                () => {
+                  context.locationContext.modifyObjectHp(9, -1);
+
+                  if (context.locationContext.checkObjectHp(9) === 0) {
+                    this.consoleService.addNewMessage({
+                      source: IMessageSourceEnum.Storyteller,
+                      value: `Все змеи повержены! Осталось только вышвырнуть их из сундука и можно прибирать добро к рукам!`
+                    }, 0.1)
+
+                    context.locationContext.removeObject(9);
+                    context.locationContext.addItem(10, false);
+                  } else {
+                    this.consoleService.addNewMessage({
+                      source: IMessageSourceEnum.System,
+                      value: `Одной змеей меньше! Остались ещё ${context.locationContext.checkObjectHp(9)}.`
+                    }, 0.1)
+                  }
+                },
+                () => {
+                  context.playerContext.modifyHp(-1);
+
+                  this.consoleService.addNewMessage({
+                    source: IMessageSourceEnum.System,
+                    value: `Змея наносит удар тебе! Ты получаешь 1 ед. урона. Твоё текущее здоровье: ${context.playerContext.checkHp()}.`
+                  }, 0.1)
+
+                  if (context.playerContext.checkHp() === 0) {
+                    this.consoleService.addNewMessage({
+                      source: IMessageSourceEnum.Storyteller,
+                      value: 'Этот удар оказывается для тебя последним. Ну что ж... Быть можешь, в следующей жизни?'
+                    }, 0.3);
+                  }
+                }
+              )
+            } else {
+              this.consoleService.addNewMessage({
+                source: IMessageSourceEnum.System,
+                value: 'Против змей с кулаками? Придумай что-то получше.'
+              })
+            }
+          }
+        }
+      ],
+      whenTaken: [],
+      whenDropped: []
+    },
+    {
+      id: 10,
+      name: 'монеты',
+      description: 'Это золотые моменты. Много-много золотых монет.',
+      actions: [
+        {
+          command: 'взять',
+          func: (context: IContext) => {
+            this.objects[9].actions.splice(0, 1);
+
+            context.locationContext.removeObject(10);
+            context.playerContext.addItem(10);
+
+            this.consoleService.addNewMessage({
+              source: IMessageSourceEnum.Storyteller,
+              value: `Превосходно! Все враги повержены, а золото у тебя на руках. Самое время возвращаться назад в деревню.`
+            }, 0.3);
+
+            this.consoleService.addNewMessage({
+              source: IMessageSourceEnum.System,
+              value: `Игра подходит к концу. Используй команду ${getSemiboldText('завершить игру')}.`
+            }, 0.6);
+          }
+        },
       ],
       whenTaken: [],
       whenDropped: []

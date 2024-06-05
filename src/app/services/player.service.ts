@@ -8,6 +8,7 @@ import { IMessageSourceEnum } from "../models/message.model";
 import { getChipsText } from "../components/helpers/common.helper";
 import { ObjectService } from "./object.service";
 import { IMoveDirectionsAltEnum, IMoveDirectionsEnum } from "../models/location.model";
+import { GameoverService } from "./gameover.service";
 
 export interface IContext {
   playerContext: PlayerService;
@@ -71,6 +72,18 @@ export class PlayerService {
           }
         },
       },
+      {
+        command: 'завершить игру', func: () => {
+          if (this.checkItemExits(10)) {
+            this.gameoverService.toggleStatus();
+          } else {
+            this.consoleService.addNewMessage({
+              source: IMessageSourceEnum.System,
+              value: 'Ещё рано. Золотой куш ждёт!'
+            });
+          }
+        },
+      },
     ],
   }
 
@@ -78,7 +91,8 @@ export class PlayerService {
     private mapService: MapService,
     private consoleService: ConsoleService,
     private questService: QuestService,
-    private objectService: ObjectService
+    private objectService: ObjectService,
+    private gameoverService: GameoverService
   ) {
     // Удалить это, когда всё будет готово
     this.player.actions[0].func();

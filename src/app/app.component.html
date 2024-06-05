@@ -1,10 +1,13 @@
 <div class="app">
-  <div class="content">
-    <app-console [clashInProcess]="clashInProcess"></app-console>
+  <div *ngIf="!(gameIsOver$ | async)" class="content">
+    <app-console [clashInProcess]="clashInProcess$"></app-console>
     <app-map></app-map>
   </div>
-  <div *ngIf="clashInProcess | async" class="checks">
+  <div *ngIf="clashInProcess$ | async" class="checks">
     <app-dice [adversaryToken]="adversaryToken.opponent"></app-dice>
     <app-dice [adversaryToken]="adversaryToken.player"></app-dice>
+  </div>
+  <div *ngIf="gameIsOver$ | async" class="gameover">
+
   </div>
 </div>
