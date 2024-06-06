@@ -1,5 +1,5 @@
 <div class="app">
-  <div *ngIf="!(gameIsOver$ | async)" class="content">
+  <div class="content">
     <app-console [clashInProcess]="clashInProcess$"></app-console>
     <app-map></app-map>
   </div>
@@ -8,6 +8,8 @@
     <app-dice [adversaryToken]="adversaryToken.player"></app-dice>
   </div>
   <div *ngIf="gameIsOver$ | async" class="gameover">
-
+    <div class="offer subheader jost semibold">
+      Такие дела. Благодарю за внимание <3
+    </div>
   </div>
 </div>

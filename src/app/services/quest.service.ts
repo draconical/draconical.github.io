@@ -25,10 +25,6 @@ export class QuestService {
             source: IMessageSourceEnum.Storyteller,
             value: `Осмотри немного интерфейс и, когда будешь готов(а), введи команду ${getSemiboldText('начать игру')} в строку ввода ниже.`,
           }, 2);
-        },
-        () => {
-          // Открываем игру через активацию первого сюжетного квеста
-          this.setQuestCurrentStep(2);
         }
       ]
     },
@@ -77,8 +73,7 @@ export class QuestService {
   constructor(
     private consoleService: ConsoleService,
   ) {
-    // Вводный квест, необходимый для инициализации игрового процесса
-    // this.initQuestByStep(0);
+    this.setQuestCurrentStep(1);
   }
 
   setQuestCurrentStep(questId: number, stepNum?: number): void {

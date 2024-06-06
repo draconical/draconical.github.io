@@ -28,7 +28,7 @@
       gap: $container-padding;
     }
 
-    >.checks {
+    >.checks, >.gameover {
       position: absolute;
       z-index: 1;
 

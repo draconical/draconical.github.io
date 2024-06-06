@@ -93,10 +93,7 @@ export class PlayerService {
     private questService: QuestService,
     private objectService: ObjectService,
     private gameoverService: GameoverService
-  ) {
-    // Удалить это, когда всё будет готово
-    this.player.actions[0].func();
-  }
+  ) { }
 
   private translateDirection(direction: string): IMoveDirectionsEnum | '' {
     switch (direction) {

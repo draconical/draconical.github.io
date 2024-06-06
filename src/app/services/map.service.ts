@@ -113,7 +113,10 @@ export class MapService {
       ],
       moveDirections: {
         north: null,
-        east: null,
+        east: {
+          name: IMoveDirectionsAltEnum.east,
+          func: () => { this.setCurrentLocation(8) }
+        },
         south: null,
         west: null
       }
